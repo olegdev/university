@@ -19,10 +19,8 @@ require.config({
  * Инициализация приложения
  */
 
-var Game = {};
-
 require(['jquery', 'app/app',], function($, App){
 	$(function() {
-		Game = App.initialize(config); // config - глобальный конфиг от сервера
+		App.initialize(config); // config - глобальный конфиг от сервера
 	});
 });

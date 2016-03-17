@@ -1,0 +1,19 @@
+{{> toolbar }}
+
+<div id="landing-page" class="row">
+<div class="col-md-12">
+	<div class="logo"></div>
+	<h1>Universes</h1>
+</div>
+</div>
+
+<script>
+	$(function() {
+		$('.logo').click(function() {
+			location.href = '/sign_in';
+		});
+		$('h1').click(function() {
+			location.href = '/sign_in';
+		});
+	});
+</script>

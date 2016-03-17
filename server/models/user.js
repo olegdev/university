@@ -4,28 +4,17 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	auth: {
-		login: String,
-		pass: String,
-		vkId: String,
-	},
-	info: {
-		title: String,
-		img: String,
-	},
-	counters: {
-		wins: Number,
-		loses: Number,
-	},
-	timed: {
-		energy: Array
-	},
-	buffs: { type: Object, default: {} },
-	rating: {
-		league: Number,
-		points: Number
-	},
-	botId: Number,
+	firstName: String,
+	lastName: String,
+	age: Number,
+	gender: Number,
+	country: String,
+	city: String,
+	email: String,
+	pass: String,
+	sport: String,
+	style: String,
+	pet: String
 });
 var model = mongoose.model('users', schema);
 

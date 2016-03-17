@@ -58,18 +58,13 @@ Service.prototype.findById = function(uid, callback) {
  * @return UserModel[]
  */
 Service.prototype.find = function(criteria, callback) {
-	var userModels = [],
-		onlineList = require(SERVICES_PATH + '/onlinelist/onlinelist');
+	var userModels = [];
 	mongoose.model('users').find(criteria, function(err, users) {
 		if (err) {
 			callback(error.factory('user', 'find', 'DB error ' + err, logger));
 		} else {
 			for(var i = 0; i < users.length; i++) {
-				if (onlineList.list[users[i].id]) {
-					userModels.push(onlineList.list[users[i].id]);
-				} else {
-					userModels.push(userModelService.factory(users[i]));
-				}
+				userModels.push(userModelService.factory(users[i]));
 			}
 			callback(null, userModels);
 		}
@@ -82,16 +77,11 @@ Service.prototype.find = function(criteria, callback) {
  * @return UserModel[]
  */
 Service.prototype.findOne = function(criteria, callback) {
-	var onlineList = require(SERVICES_PATH + '/onlinelist/onlinelist');
 	mongoose.model('users').findOne(criteria, function(err, user) {
 		if (err) {
 			callback(error.factory('user', 'find', 'DB error ' + err, logger));
 		} else {
-			if (onlineList.list[user.id]) {
-				callback(null, onlineList.list[user.id]);
-			} else {
-				callback(null, userModelService.factory(user));
-			}
+			callback(null, userModelService.factory(user));
 		}
 	});
 }

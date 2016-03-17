@@ -7,8 +7,6 @@ var _ = require('underscore');
 var user = require(SERVICES_PATH + '/user/user');
 var error = require(SERVICES_PATH + '/error');
 
-var onlineList = require(SERVICES_PATH + '/onlinelist/onlinelist');
-
 var Service = {
 	getConfig: function(uid, callback) {
 		var innerFillConfig = function(userModel) {
@@ -21,26 +19,22 @@ var Service = {
 				}
 			});
 		}
+		
 		var clientConfig = {
 			debug: CONFIG.debug,
 		};
 
-		if (onlineList.list[uid]) {
-			innerFillConfig(onlineList.list[uid]);
-		} else {
-			user.findById(uid, function(err, userModel) {
-				if (!err) {
-					if (userModel) {
-						innerFillConfig(userModel);
-					} else {
-						callback(null, null);
-					}
+		user.findById(uid, function(err, userModel) {
+			if (!err) {
+				if (userModel) {
+					innerFillConfig(userModel);
 				} else {
-					callback(error.factory('getconfig', 'getConfig', 'user findById error' + err, logger));
+					callback(null, null);
 				}
-			});
-
-		}
+			} else {
+				callback(error.factory('getconfig', 'getConfig', 'user findById error' + err, logger));
+			}
+		});
 	}
 };
 

@@ -19,15 +19,6 @@ var logger = require(SERVICES_PATH + '/logger/logger')(__filename);
 var dbconnect = require(SERVICES_PATH + '/dbconnect/dbconnect');
 
 var auth = require(SERVICES_PATH + '/auth');
-var sockets = require(SERVICES_PATH + '/sockets');
-var getConfig = require(SERVICES_PATH + '/getconfig/getconfig');
-var dictionary = require(SERVICES_PATH + '/dictionary/dictionary');
-var bots = require(SERVICES_PATH + '/bots/bots');
-var rating = require(SERVICES_PATH + '/rating/rating');
-var timed = require(SERVICES_PATH + '/timed/timed');
-var buffs = require(SERVICES_PATH + '/buffs/buffs');
-var gameInfo = require(SERVICES_PATH + '/gameinfo/gameinfo');
-var vk = require(SERVICES_PATH + '/social/vk');
 
 //============= Create server ============
 
@@ -72,115 +63,142 @@ app.use(express.static(__dirname + '/client'));
 
 var hbs = exphbs.create({
     defaultLayout: 'default',
+    partialsDir: __dirname + '/views/partials',
+    extname: '.html',
+    helpers: {
+    	ifCond: function (v1, operator, v2, options) {
+		    switch (operator) {
+		        case '==':
+		            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+		        case '===':
+		            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+		        case '<':
+		            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+		        case '<=':
+		            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+		        case '>':
+		            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+		        case '>=':
+		            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+		        case '&&':
+		            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+		        case '||':
+		            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+		        default:
+		            return options.inverse(this);
+		    }
+		},
+		ifContains: function() {
+			var args = Array.prototype.slice.call(arguments);
+			var v = args.shift();
+			var options = arguments[arguments.length-1];
+			return args.indexOf(v) != -1 ? options.fn(this) : options.inverse(this);
+		}
+    }
 });
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine('html', hbs.engine);
+app.set('view engine', 'html');
 
 
 // ============== ROUTES ================
 
 app.get("/", function(req, res, next) {
-	if (!req.session.uid) {		
-		res.redirect('/login');
-	} else {
-		getConfig
-			.getConfig(req.session.uid, function(err, config) {
-				if (!err && config) {
-					app.locals.config = JSON.stringify(config);
-					if (config.debug) {
-						app.locals.debug = JSON.stringify(config.debug);						
-					}
-					res.render('main', {layout: 'main'});
-				} else {
-					if (!config) {
-						/****/ logger.error('Config for user id ' + req.session.uid + ' not found');
-					}
-					res.status(500).send("Internal server error");
-				}
-			});
-	}
-});
-app.get("/login", function(req, res, next) {
 	if (!req.session.uid) {
-		res.render('login');
+		res.redirect('/landing');
 	} else {
-		res.redirect('/');
-	}
-});
-app.get("/vk", function(req, res, next) {
-	/****/ logger.info('User auth ' + JSON.stringify(req.query));
-	vk.auth(req.query, function(err, uid) {
-		/****/ logger.info('User auth success ' + uid);
-		if (!err) {
-			if (uid) {
-				req.session.uid = uid;
-				res.redirect('/');
-			} else {
-				res.end('User not found.');
-			}
-		} else {
-			res.status(500).send("Internal server error");	
-		}
-	});
-});
-app.post("/vk_order", function(req, res, next) {
-	vk.order(req.body, function(err, data) {
-		if (!err) {
-			res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    		res.send(JSON.stringify({response: data}));
-		} else {
-			res.status(500).send("Internal server error");	
-		}
-	});
-});
-app.post('/login', function(req, res, next) {
-	auth
-		.auth(req.body.login, req.body.pass, function(err, uid) {
+		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 			if (!err) {
-				if (uid) {
-					req.session.uid = uid;
-					res.redirect('/');
+				if (user) {
+					res.render('main', {page: 'main', user: user});
 				} else {
-					res.end('User not found.');
-				}
+					/****/ logger.error('User not found by session uid ');
+				}			
 			} else {
-				res.status(500).send("Internal server error");	
+				/****/ logger.error('Cannot find user cause DB error ' + err);
 			}
 		});
+	}
 });
-app.get("/info", function(req, res, next) {
-	app.locals.info = gameInfo.getInfo();
-	res.render('info');
+app.get("/landing", function(req, res, next) {
+	res.render('landing', {page: 'landing'});
 });
+app.get("/sign_up", function(req, res, next) {
+	res.render('sign_up', {page: 'sign_up'});
+});
+app.post("/sign_up", function(req, res, next) {
+	var ModelClass = mongoose.model('users');
+	var model = new ModelClass(req.body);
+	model.save(function(err) {
+		if (!err) {
+			req.session.uid = model.id;
+			res.redirect('/');
+		} else {
+			/****/ logger.error('Cannot save user cause DB error ' + err);
+		}
+	});
+});
+app.get("/sign_in", function(req, res, next) {
+	res.render('sign_in', {page: 'sign_in'});
+});
+app.post("/sign_in", function(req, res, next) {
+	mongoose.model('users').findOne({email: req.body.email, pass: req.body.pass}, function(err, user) {
+		if (!err) {
+			if (user) {
+				req.session.uid = user.get('id');
+				res.redirect('/');
+			} else {
+				res.redirect('/sign_in');
+			}			
+		} else {
+			/****/ logger.error('Cannot find user cause DB error ' + err);
+		}
+	})
+});
+app.get("/profile", function(req, res, next) {
+	if (!req.session.uid) {
+		res.redirect('/');
+	} else {
+		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
+			if (!err) {
+				if (user) {
+					res.render('profile', {page: 'profile', user: user});
+				} else {
+					/****/ logger.error('User not found by session uid ');
+				}			
+			} else {
+				/****/ logger.error('Cannot find user cause DB error ' + err);
+			}
+		});
+	}
+});
+app.post("/profile", function(req, res, next) {
+	if (!req.session.uid) {
+		res.redirect('/');
+	} else {
+		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
+			if (!err) {
+				if (user) {
+					user.set(req.body);
+					user.save(function(err) {
+						if (!err) {
+							res.redirect('/');
+						} else {
+							/****/ logger.error('Cannot save profile cause DB error ' + err);
+						}
+					});
+				} else {
+					/****/ logger.error('User not found by session uid ');
+				}			
+			} else {
+				/****/ logger.error('Cannot find user cause DB error ' + err);
+			}
+		});
+	}
+});
+
+
 
 var server = app.listen(CONFIG.port);
-var serverHttps = https.createServer({
-      key: fs.readFileSync('./ssl/private'),
-      cert: fs.readFileSync('./ssl/certificate'),
-      ca: [
-      	fs.readFileSync('./ssl/root_cert'),
-      	fs.readFileSync('./ssl/intermediate_cert'),
-      	fs.readFileSync('./ssl/cert_request')
-      ]
-    }, app).listen(CONFIG.portHttps);
-
-// ============ Socket IO =========
-
-var sio = sockets.listen(server);
-var sio2 = sockets.listen(serverHttps);
-
-sio.use(function(socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next);
-});
-sio.use(function(socket, next) {
-    dbconnect(socket.request, socket.request.res, next);
-});
-sio2.use(function(socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next);
-});
-sio2.use(function(socket, next) {
-    dbconnect(socket.request, socket.request.res, next);
-});
 
 // ============= Bootstrap models ==========
 
@@ -193,50 +211,4 @@ fs.readdirSync(join(BASE_PATH, 'server/api')).forEach(function (file) {
   if (~file.indexOf('.js')) require(join(BASE_PATH, 'server/api', file));
 });
 
-// ============ Load dictionary ===========
-dictionary.load(function(err) {
-	if (!err) {
-		/****/ logger.info('Dictionary loaded with ' + dictionary.dictionary.words.length + ' words');
-	} else {
-		/****/ logger.error('Dictionary load error');
-	}
-});
-
-// ============ Load bots ===========
-bots.load(function(err) {
-	if (!err) {
-		/****/ logger.info('Bots loaded');
-	} else {
-		/****/ logger.error('Bots load error');
-	}
-});
-
-// ============ Recalc rating ===========
-rating.recalcRating(function(err) {
-	if (!err) {
-		/****/ logger.info('Rating is ready');
-	} else {
-		/****/ logger.error('Rating calculation error');
-	}
-});
-
-// ============ Timed refreshing ===========
-timed.refreshValues(function(err) {
-	if (!err) {
-		/****/ logger.info('Timed was refreshed');
-	} else {
-		/****/ logger.error('Timed refreshing error');
-	}
-});
-
-// ============ Buffs refreshing ===========
-buffs.refreshValues(function(err) {
-	if (!err) {
-		/****/ logger.info('Buffs was refreshed');
-	} else {
-		/****/ logger.error('Buffs refreshing error');
-	}
-});
-
 /****/ logger.info('Node app started on port ' + CONFIG.port);
-/****/ logger.info('Node https app started on port ' + CONFIG.portHttps);

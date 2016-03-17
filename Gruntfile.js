@@ -45,10 +45,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('references', require('./tasks/references')(grunt));
-    grunt.registerTask('dictionary', require('./tasks/dictionary')(grunt));
-    grunt.registerTask('bots', require('./tasks/bots')(grunt));
-    grunt.registerTask('patch_users', require('./tasks/patch_users')(grunt));
-    grunt.registerTask('px_to_em', require('./tasks/px_to_em')(grunt));
 
     grunt.event.on('watch', function(action, filepath) {
         grunt.config("changed_ref_filepath", filepath);

@@ -1,0 +1,21 @@
+<div id="toolbar" class="row">
+	<div class="col-md-12">
+		
+		{{#ifContains page "sign_up" "landing" }}
+			<a href="/sign_in"><button class="btn btn-primary">Sign In</button></a>
+		{{/ifContains}}
+
+		{{#ifContains page "sign_in" "landing" }}
+			<a href="/sign_up"><button class="btn btn-success">Sign Up</button></a>
+		{{/ifContains}}
+
+		{{#ifContains page "profile"}}
+			<a href="/"><button class="btn btn-primary">Main</button></a>
+		{{/ifContains}}
+
+		{{#ifContains page "main"}}
+			<a href="/profile"><button class="btn btn-primary">Edit your profile</button></a>
+		{{/ifContains}}
+
+	</div>
+</div>
