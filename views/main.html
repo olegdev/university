@@ -1,1 +1,84 @@
 {{> toolbar }}
+
+<div id="figure-container"></div>
+
+<script src="js/vendor/threejs/build/three.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script>
+
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, 1, 1, 10000);
+var renderer = new THREE.WebGLRenderer({ alpha: true });
+var orbit = new THREE.OrbitControls( camera, renderer.domElement );
+orbit.enableZoom = false;
+
+renderer.setSize(600, 600);
+$('#figure-container').append(renderer.domElement);
+
+var geometry = new THREE.DodecahedronGeometry(300,0);
+// var geometry = new THREE.BoxGeometry(400,400,400);
+// var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
+
+// instantiate a loader
+var loader = new THREE.TextureLoader();
+
+var cube;
+
+loader.load(
+	'img/shopping_text3.jpg',
+	function ( texture ) {
+		var textureMaterial = new THREE.MeshBasicMaterial({ 
+		    map: texture, 
+		    side:THREE.DoubleSide 
+		}); 
+
+		var boxMaterials = [ 
+			new THREE.MeshBasicMaterial({color:0x000000, opacity: 1, transparent: false, side:THREE.DoubleSide }), 
+			new THREE.MeshBasicMaterial({color:0x000000, opacity: 1, transparent: false, side:THREE.DoubleSide }), 
+			new THREE.MeshBasicMaterial({color:0x000000, opacity: 1, transparent: false, side:THREE.DoubleSide }), 
+			new THREE.MeshBasicMaterial({color:0x000000, opacity: 1, transparent: false, side:THREE.DoubleSide }), 
+
+			// textureMaterial,
+			
+			// new THREE.MeshBasicMaterial({color:0xFFFFFF, opacity: 0.6, transparent: false, side:THREE.DoubleSide, shading: }), 
+		    // new THREE.MeshBasicMaterial({color:0xFFFFFF}) 
+		]; 
+
+		for(var i = boxMaterials.length; i < 80; i++) {
+			boxMaterials.push(new THREE.MeshBasicMaterial({color:0x000000, opacity: 1, transparent: false, side:THREE.DoubleSide }));
+			// boxMaterials.push(new THREE.MeshBasicMaterial({ 
+			//     map: texture, 
+			//     side:THREE.DoubleSide 
+			// }));
+		}
+
+		boxMaterials[29] = new THREE.MeshBasicMaterial({ map: texture, side:THREE.DoubleSide });
+		boxMaterials[28] = new THREE.MeshBasicMaterial({ map: texture, side:THREE.DoubleSide });
+		boxMaterials[27] = new THREE.MeshBasicMaterial({ map: texture, side:THREE.DoubleSide });
+		//boxMaterials[26] = new THREE.MeshBasicMaterial({ map: texture, side:THREE.DoubleSide });
+
+		 // Create a MeshFaceMaterial, which allows the cube to have different materials on 
+		 // each face 
+		var boxMaterial = new THREE.MeshFaceMaterial(boxMaterials); 
+		// var boxMaterial = new THREE.MeshBasicMaterial(textureMaterial); 
+
+		cube = new THREE.Mesh(geometry, boxMaterial);
+		cube.rotation.x += 0.22;
+		cube.rotation.z += 0.37;
+		cube.rotation.y += -0.5;
+		var edges = new THREE.EdgesHelper( cube, 0xFF0000 );
+		scene.add(cube);
+		scene.add(edges);
+		camera.position.z = 1000;        
+		render();
+	}
+);
+
+function render() {
+	requestAnimationFrame(render);
+	// cube.rotation.y += 0.01;
+	// cube.rotation.z += 0.01;
+	renderer.render(scene, camera);
+};
+
+</script>

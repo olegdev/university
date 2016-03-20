@@ -20,11 +20,18 @@
 }
 
 /**
+ * Main page
+ */
+#figure-container {
+	text-align: center;
+}
+
+/**
  * Toolbar
  */
 #toolbar {
 	text-align: right;
-	margin: 20px;
+	margin: 20px 0 0 0;
 }
 /**
  * Profile and Sign in form

@@ -27,6 +27,7 @@
     "requirejs": "~2.1.20",
     "text": "requirejs/text#~2.0.14",
     "bootstrap": "~3.3.6",
-    "bootstrap-form-helpers": "~2.3.0"
+    "bootstrap-form-helpers": "~2.3.0",
+    "threejs": "*"
   }
 }
