@@ -206,9 +206,4 @@ fs.readdirSync(join(BASE_PATH, 'server/models')).forEach(function (file) {
   if (~file.indexOf('.js')) require(join(BASE_PATH, 'server/models', file));
 });
 
-// ============ Bootstrap api =============
-fs.readdirSync(join(BASE_PATH, 'server/api')).forEach(function (file) {
-  if (~file.indexOf('.js')) require(join(BASE_PATH, 'server/api', file));
-});
-
 /****/ logger.info('Node app started on port ' + CONFIG.port);
