@@ -28,6 +28,8 @@
     "text": "requirejs/text#~2.0.14",
     "bootstrap": "~3.3.6",
     "bootstrap-form-helpers": "~2.3.0",
-    "threejs": "*"
+    "threejs": "*",
+    "vis": "~4.15.1",
+    "bootstrap-popover-picker": "~1.0.0"
   }
 }

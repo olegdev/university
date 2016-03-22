@@ -28,6 +28,7 @@
  */
 #figure-container {
 	text-align: center;
+	height: 605px;
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
@@ -41,6 +42,14 @@
 }
 #email-container {
 	border-radius: 0 3px 3px 0;
+}
+ #mynetwork {
+  	width: 600px;
+	height: 400px;
+	position: relative;
+	height: 565px;
+	margin: 20px auto;
+	display: none;
 }
 
 /**
@@ -113,4 +122,73 @@
 }
 #signin-form {
 	margin-top: 50px;
+}
+.picker .picker-item {
+	width: 50px;
+	height: 50px;
+}
+.picker-popover.popover {
+	width: 392px;
+}
+.picker-search {
+	display: none;
+}
+.avatar-icon {
+	width: 55px;
+    height: 55px;
+    background-size: contain;
+    margin: -8px;
+}
+.avatar-icon-1 {
+	background-image: url(../img/ava_1.png);
+}
+.avatar-icon-2 {
+	background-image: url(../img/ava_2.png);
+}
+.avatar-icon-3 {
+	background-image: url(../img/ava_3.png);
+}
+.avatar-icon-4 {
+	background-image: url(../img/ava_4.png);
+}
+.avatar-icon-5 {
+	background-image: url(../img/ava_5.png);
+}
+.avatar-icon-6 {
+	background-image: url(../img/ava_6.png);
+}
+.avatar-icon-7 {
+	background-image: url(../img/ava_7.png);
+}
+.avatar-icon-8 {
+	background-image: url(../img/ava_8.png);
+}
+.avatar-icon-9 {
+	background-image: url(../img/ava_9.png);
+}
+.avatar-icon-10 {
+	background-image: url(../img/ava_10.png);
+}
+.avatar-icon-11 {
+	background-image: url(../img/ava_11.png);
+}
+.avatar-icon-12 {
+	background-image: url(../img/ava_12.png);
+}
+#avatar-image {
+	width: 90px;
+	height: 92px;
+	border: 1px solid #ccc;
+	position: absolute;
+	background-color: #fff;
+}
+#avatar-image .avatar-icon {
+	margin: 0;
+	width: 90px;
+	height: 90px;
+}
+#avatar-input {
+	width: 0;
+	height: 0;
+	position: absolute;
 }

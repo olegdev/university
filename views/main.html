@@ -1,12 +1,15 @@
 {{> toolbar }}
 
 <div id="figure-container"></div>
+<div id="mynetwork"></div>
 <div class="row">
 <div id="chat-container" class="col-xs-6">chat</div>
 <div id="email-container" class="col-xs-6">email</div>
 </div>
 
-<script src="js/vendor/threejs/build/three.js"></script>
+<!-- Cube -->
+
+<script src="js/vendor/threejs/build/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script>
 
@@ -84,5 +87,79 @@ function render() {
 	// cube.rotation.z += 0.01;
 	renderer.render(scene, camera);
 };
+
+$('#figure-container').dblclick(function() {
+	$('#figure-container').fadeOut(function() {
+	  $('#mynetwork').fadeIn(function() {
+	  	initGraph();
+	  });
+	});
+});
+
+$('.hexagon-icon').click(function() {
+	$('#mynetwork').fadeOut(function() {
+	  $('#figure-container').fadeIn(function() {
+	  		//
+	  });
+	});
+});
+
+</script>
+
+<!-- Graph -->
+
+<script src="js/vendor/vis/dist/vis.min.js"></script>
+<script type="text/javascript">
+var initialized = false;
+var initGraph = function() {
+
+	if (!initialized) {
+		initialized = true;
+	} else {
+		return;
+	}
+
+	  // create an array with nodes
+  var nodes = new vis.DataSet([
+    {id: 1,  shape: 'circularImage', image: '/img/ava_{{user.avatar}}.png'},
+    {id: 2,  shape: 'circularImage', image: '/img/ava_2.png'},
+    {id: 3,  shape: 'circularImage', image: '/img/ava_3.png'},
+    {id: 4,  shape: 'circularImage', image: '/img/ava_5.png'},
+    {id: 5,  shape: 'circularImage', image: '/img/ava_6.png'},
+    {id: 6,  shape: 'circularImage', image: '/img/ava_7.png'},
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {from: 1, to: 3},
+    {from: 1, to: 2},
+    {from: 1, to: 4},
+    {from: 1, to: 5},
+    {from: 1, to: 6}
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    nodes: {
+      borderWidth:4,
+      size:40,
+      color: {
+        border: '#222222',
+        background: '#666666'
+      },
+      font:{color:'#eeeeee'}
+    },
+    edges: {
+      color: 'lightgray'
+    }
+  };
+	var network = new vis.Network(container, data, options);
+
+}
 
 </script>

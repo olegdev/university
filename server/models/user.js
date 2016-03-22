@@ -14,7 +14,8 @@ var schema = new mongoose.Schema({
 	pass: String,
 	sport: String,
 	style: String,
-	pet: String
+	pet: String,
+	avatar: Number,
 });
 var model = mongoose.model('users', schema);
 
