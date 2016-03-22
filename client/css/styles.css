@@ -1,3 +1,7 @@
+.container {
+	min-width: 960px !important;
+}
+
 /** 
  * Landing page
  */
@@ -25,6 +29,19 @@
 #figure-container {
 	text-align: center;
 }
+#chat-container, #email-container {
+	border: 1px solid #ccc;
+	height: 200px;
+	text-align: center;
+	font-size: 18px;
+	color: #888;
+	/*font-style: italic;*/
+	padding: 80px 0 0 0;
+	border-radius: 3px 0 0 3px;
+}
+#email-container {
+	border-radius: 0 3px 3px 0;
+}
 
 /**
  * Toolbar
@@ -33,6 +50,51 @@
 	text-align: right;
 	margin: 20px 0 0 0;
 }
+#toolbar .iv-icon {
+	background-image: url(../img/iv_logo.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 40px;
+	height: 40px;
+	display: block;
+	float: left;
+	margin-top: -7px;
+}
+#toolbar .hexagon-icon {
+	background-image: url(../img/hexagon-128.jpg);
+	background-repeat: no-repeat;
+	width: 33px;
+	height: 33px;
+	display: block;
+	float: left;
+	margin: -4px 0 0 25px;
+	background-size: contain;
+}
+#toolbar .notif-icon {
+	background-image: url(../img/notif.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    padding: 12px 14px 0 10px;
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0px 17px 0 0;
+}
+#toolbar .notif-icon span {
+	font-size: 22px;
+	background-color: #fff;
+}
+#toolbar .search-field {
+	display: inline;
+}
+#toolbar .profile-btn {
+	display: inline-block;
+    overflow: hidden;
+}
+
 /**
  * Profile and Sign in form
  */
