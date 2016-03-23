@@ -29,6 +29,7 @@
 #figure-container {
 	text-align: center;
 	height: 605px;
+	background-color: #000;
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
@@ -39,6 +40,7 @@
 	/*font-style: italic;*/
 	padding: 80px 0 0 0;
 	border-radius: 3px 0 0 3px;
+	margin: 20px 0 0 0;
 }
 #email-container {
 	border-radius: 0 3px 3px 0;
@@ -98,6 +100,7 @@
 }
 #toolbar .search-field {
 	display: inline;
+	margin-left: 48px;
 }
 #toolbar .profile-btn {
 	display: inline-block;
@@ -107,12 +110,12 @@
 /**
  * Profile and Sign in form
  */
-#profile-form, #signin-form {
+#profile-form, #signin-form, #shopping-profile{
 	max-width: 480px;
 	margin: 0 auto;
 	color: #666
 }
-#profile-form h2, #signin-form h2 {
+#profile-form h2, #signin-form h2, #shopping-profile h2{
 	text-align: center;
 	margin: 25px 0 25px 65px;
 }

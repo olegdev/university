@@ -1,0 +1,34 @@
+{{> toolbar }}
+
+<div id="shopping-profile" class="container">
+<div class="row">
+
+<h2>Edit your shopping profile</h2>
+
+<form id="profile-form" class="form-horizontal" action="shopping_profile" method="post">
+
+  <div class="form-group">
+	<label for="profileInputFirstName" class="col-sm-3 control-label">First name</label>
+	<div class="col-sm-9">
+	  <input type="text" class="form-control" name="firstName" id="profileInputFirstName" placeholder="First name" value="{{shoppingProfile.firstName}}">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="profileInputLastName" class="col-sm-3 control-label">Last name</label>
+	<div class="col-sm-9">
+	  <input type="text" class="form-control" name="lastName" id="profileInputLastName" placeholder="Last name" value="{{shoppingProfile.lastName}}">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<div class="col-sm-offset-4 col-sm-6">
+		<button type="submit" class="btn btn-success">Save changes</button>
+	</div>
+  </div>
+
+</form>
+
+
+</div>
+</div>

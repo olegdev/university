@@ -178,7 +178,6 @@ app.post("/profile", function(req, res, next) {
 		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 			if (!err) {
 				if (user) {
-					console.log(req.body);
 					user.set(req.body);
 					user.save(function(err) {
 						if (!err) {
@@ -196,7 +195,47 @@ app.post("/profile", function(req, res, next) {
 		});
 	}
 });
-
+app.get("/shopping_profile", function(req, res, next) {
+	if (!req.session.uid) {
+		res.redirect('/');
+	} else {
+		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
+			if (!err) {
+				if (user) {
+					res.render('shopping_profile', {page: 'shopping_profile', shoppingProfile: user.get('shoppingProfile') || {}});
+				} else {
+					/****/ logger.error('User not found by session uid ');
+				}			
+			} else {
+				/****/ logger.error('Cannot find user cause DB error ' + err);
+			}
+		});
+	}
+});
+app.post("/shopping_profile", function(req, res, next) {
+	if (!req.session.uid) {
+		res.redirect('/');
+	} else {
+		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
+			if (!err) {
+				if (user) {
+					user.set("shoppingProfile", req.body);
+					user.save(function(err) {
+						if (!err) {
+							res.redirect('/');
+						} else {
+							/****/ logger.error('Cannot save profile cause DB error ' + err);
+						}
+					});
+				} else {
+					/****/ logger.error('User not found by session uid ');
+				}			
+			} else {
+				/****/ logger.error('Cannot find user cause DB error ' + err);
+			}
+		});
+	}
+});
 
 
 var server = app.listen(CONFIG.port);

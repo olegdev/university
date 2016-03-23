@@ -10,6 +10,12 @@
 		{{/ifContains}}
 
 		{{#ifContains page "profile"}}
+			<a href="/shopping_profile"><button class="btn btn-primary">Shopping profile</button></a>
+			<a href="/"><button class="btn btn-primary">Main</button></a>
+		{{/ifContains}}
+
+		{{#ifContains page "shopping_profile"}}
+			<a href="/profile"><button class="btn btn-primary">Account profile</button></a>
 			<a href="/"><button class="btn btn-primary">Main</button></a>
 		{{/ifContains}}
 
@@ -21,13 +27,13 @@
 				<a href="#" class="hexagon-icon" title="Main graph"></a>
 			</div>
 			<div class="col-xs-1"></div>
-			<div class="col-xs-6" style="text-align: center;">
+			<div class="col-xs-5" style="text-align: center;">
 				<input class=" search-field form-control" placeholder="Search" />
 			</div>
 
-			<div class="col-xs-3">
+			<div class="col-xs-4">
 				<a href="#" class="notif-icon" title="Notifications"><span>5</span></a>
-				<a class="profile-btn" href="/profile"><button class="btn btn-primary">Edit your profile</button></a>
+				<a class="profile-btn" href="/shopping_profile"><button class="btn btn-primary">Edit your shopping profile</button></a>
 			</div>
 		{{/ifContains}}
 

@@ -16,6 +16,7 @@ var schema = new mongoose.Schema({
 	style: String,
 	pet: String,
 	avatar: Number,
+	shoppingProfile: Object
 });
 var model = mongoose.model('users', schema);
 
