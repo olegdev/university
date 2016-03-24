@@ -228,6 +228,7 @@ app.post("/shopping_profile", function(req, res, next) {
 		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 			if (!err) {
 				if (user) {
+					console.log(req.body);
 					user.set("shoppingProfile", req.body);
 					user.save(function(err) {
 						if (!err) {
