@@ -66,7 +66,7 @@ loader.load('img/shopping_text3.jpg', function ( shoppingTexture ) {
 
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	// document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 });
 
 function onDocumentMouseDown(event) {
@@ -80,7 +80,6 @@ function onDocumentMouseDown(event) {
 	var intersects = raycaster.intersectObjects([cube], true);
 
 	if ( intersects.length > 0 ) {
-		debugger
 		intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
 
 		var particle = new THREE.Sprite( particleMaterial );
@@ -123,6 +122,10 @@ $('.hexagon-icon').click(function() {
 	  		//
 	  });
 	});
+});
+
+$('.search-field .dropdown-menu li').click(function() {
+	$('.search-field input').focus();
 });
 
 // ----------------- Graph -------------------------------- //
