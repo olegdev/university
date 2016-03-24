@@ -197,3 +197,12 @@
 	height: 0;
 	position: absolute;
 }
+
+/**
+ * Tooltips override
+ */
+.tooltip-inner {
+	background-color: #5cb85c;
+	padding: 10px 20px;
+	opacity: 1;
+}

@@ -20,6 +20,7 @@ renderer.setSize(600, 600);
 $('#figure-container').append(renderer.domElement);
 
 var geometry = new THREE.DodecahedronGeometry(300,0);
+// var geometry = new THREE.SphereGeometry( 300, 4, 16 );
 // var geometry = new THREE.BoxGeometry(400,400,400);
 // var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
 
@@ -29,10 +30,11 @@ var loader = new THREE.TextureLoader();
 var cube;
 var dynamicTexture;
 
+loader.load('img/sample.jpg', function ( sampleTexture ) {
 loader.load('img/shopping_text3.jpg', function ( shoppingTexture ) {
 	var boxMaterials = [];
 
-	for(var i = 0; i < 40; i++) {
+	for(var i = 0; i < 36; i++) {
 		boxMaterials.push(new THREE.MeshBasicMaterial({color:options.baseColor, opacity: options.opacity, transparent: options.transparent}));
 	}
 
@@ -54,6 +56,9 @@ loader.load('img/shopping_text3.jpg', function ( shoppingTexture ) {
 	// Create a MeshFaceMaterial, which allows the cube to have different materials on each face 
 	var boxMaterial = new THREE.MeshFaceMaterial(boxMaterials);
 
+	// boxMaterial =  new THREE.MeshBasicMaterial({ map: sampleTexture });
+	// boxMaterial = new THREE.MeshLambertMaterial( { color: 0x222244 } );
+
 	cube = new THREE.Mesh(geometry, boxMaterial);
 	cube.rotation.x += 0.22;
 	cube.rotation.z += 0.37;
@@ -67,6 +72,7 @@ loader.load('img/shopping_text3.jpg', function ( shoppingTexture ) {
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
 	// document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+});
 });
 
 function onDocumentMouseDown(event) {
