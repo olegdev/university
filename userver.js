@@ -178,6 +178,15 @@ app.post("/profile", function(req, res, next) {
 		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 			if (!err) {
 				if (user) {
+					if (!req.body.sport) {
+						req.body.sport = undefined;
+					}
+					if (!req.body.pet) {
+						req.body.pet = undefined;
+					}
+					if (!req.body.style) {
+						req.body.style = undefined;
+					}
 					user.set(req.body);
 					user.save(function(err) {
 						if (!err) {

@@ -4,11 +4,8 @@
 	<form id="profile-form" class="form-horizontal" action="profile" method="post">
 {{/ifCond}}
 
-{{#ifCond page "==" "sign_up"}}
-	<h2>Profile</h2>
-{{else}}
-	<h2>Edit your profile</h2>
-{{/ifCond}}
+<div class="col-xs-7">
+	<h2>Personal info</h2>
 
   <div class="form-group">
 	<label for="profileInputFirstName" class="col-sm-3 control-label">First name</label>
@@ -83,53 +80,123 @@
   </div>
 {{/ifCond}}
 
+</div>
+<div class="col-xs-5" style="padding: 0 0 0 33px">
+
  <h2>Universes</h2>
-
-  <div class="form-group">
-	<label for="profileInputSport" class="col-sm-3 control-label">Favorite sport</label>
-	<div class="col-sm-9">
-	  <select name="sport" class="form-control" id="profileInputSport">
-		  <option {{#ifCond user.sport "==" "Football"}}selected{{/ifCond}} value="Football">Football</option>
-		  <option {{#ifCond user.sport "==" "Baseball"}}selected{{/ifCond}} value="Baseball">Baseball</option>
-		  <option {{#ifCond user.sport "==" "Basketball"}}selected{{/ifCond}} value="Basketball">Basketball</option>
-		  <option {{#ifCond user.sport "==" "Hockey"}}selected{{/ifCond}} value="Hockey">Hockey</option>
-		  <option {{#ifCond user.sport "==" "Rugby"}}selected{{/ifCond}} value="Rugby">Rugby</option>
-		  <option {{#ifCond user.sport "==" "Volleyball"}}selected{{/ifCond}} value="Volleyball">Volleyball</option>
-		  <option {{#ifCond user.sport "==" "Chess"}}selected{{/ifCond}} value="Chess">Chess</option>
-		  <option {{#ifCond user.sport "==" "Swimming"}}selected{{/ifCond}} value="Swimming">Swimming</option>
-		  <option {{#ifCond user.sport "==" "Racing"}}selected{{/ifCond}} value="Racing">Racing</option>
-		  <option {{#ifCond user.sport "==" "Other"}}selected{{/ifCond}} value="Other">Other</option>
-		</select>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #00FF00" class="input-group-addon">
+				<input type="checkbox" name="sport" {{#ifCond user.sport '==' "on" }}checked{{/ifCond}}>
+			</span>
+			<input type="text" class="form-control" readonly value="Sport">
+		</div>
 	</div>
-  </div>
-
-  <div class="form-group">
-	<label for="profileInputStyle" class="col-sm-3 control-label">Clothing style</label>
-	<div class="col-sm-9">
-	  <select name="style" class="form-control" id="profileInputStyle">
-		  <option {{#ifCond user.style "==" "Modern"}}selected{{/ifCond}} value="Modern">Modern</option>
-		  <option {{#ifCond user.style "==" "Classic"}}selected{{/ifCond}} value="Classic">Classic</option>
-		</select>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #0000FF" class="input-group-addon">
+				<input type="checkbox" name="pet" {{#ifCond user.pet '==' "on" }}checked{{/ifCond}}>
+			</span>
+			<input type="text" class="form-control" readonly value="Pets">
+		</div>
 	</div>
-  </div>
-
-  <div class="form-group">
-	<label for="profileInputPet" class="col-sm-3 control-label">Favorite pets</label>
-	<div class="col-sm-9">
-	  <select name="pet" class="form-control" id="profileInputPet">
-		  <option {{#ifCond user.pet "==" "Cat"}}selected{{/ifCond}} value="Cat">Cat</option>
-		  <option {{#ifCond user.pet "==" "Dog"}}selected{{/ifCond}} value="Dog">Dog</option>
-		  <option {{#ifCond user.pet "==" "Hamster"}}selected{{/ifCond}} value="Hamster">Hamster</option>
-		  <option {{#ifCond user.pet "==" "Mouse"}}selected{{/ifCond}} value="Mouse">Mouse</option>
-		  <option {{#ifCond user.pet "==" "Parrot"}}selected{{/ifCond}} value="Parrot">Parrot</option>
-		  <option {{#ifCond user.pet "==" "Cavy"}}selected{{/ifCond}} value="Cavy">Cavy</option>
-		  <option {{#ifCond user.pet "==" "Other"}}selected{{/ifCond}} value="Other">Other</option>
-		</select>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #ffa500" class="input-group-addon">
+				<input type="checkbox" name="style" {{#ifCond user.style '==' "on" }}checked{{/ifCond}}>
+			</span>
+			<input type="text" class="form-control" readonly value="Shopping">
+		</div>
 	</div>
-  </div>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #eee" class="input-group-addon">
+				<input type="checkbox" disabled>
+			</span>
+			<input type="text" class="form-control" readonly value="Universe A">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #eee" class="input-group-addon">
+				<input type="checkbox" disabled>
+			</span>
+			<input type="text" class="form-control" readonly value="Universe B">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+				<span style="background-color: #eee" class="input-group-addon">
+					<input type="checkbox" disabled>
+				</span>
+			<input type="text" class="form-control" readonly value="Universe C">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #eee" class="input-group-addon">
+				<input type="checkbox" disabled>
+			</span>
+			<input type="text" class="form-control" readonly value="Universe D">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="input-group">
+			<span style="background-color: #eee" class="input-group-addon">
+				<input type="checkbox" disabled>
+			</span>
+			<input type="text" class="form-control" readonly value="Universe E">
+		</div>
+	</div>
+
+</div>
+
+  <!--<div class="form-group">-->
+	<!--<label for="profileInputSport" class="col-sm-3 control-label">Favorite sport</label>-->
+	<!--<div class="col-sm-9">-->
+	  <!--<select name="sport" class="form-control" id="profileInputSport">-->
+		  <!--<option {{#ifCond user.sport "==" "Football"}}selected{{/ifCond}} value="Football">Football</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Baseball"}}selected{{/ifCond}} value="Baseball">Baseball</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Basketball"}}selected{{/ifCond}} value="Basketball">Basketball</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Hockey"}}selected{{/ifCond}} value="Hockey">Hockey</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Rugby"}}selected{{/ifCond}} value="Rugby">Rugby</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Volleyball"}}selected{{/ifCond}} value="Volleyball">Volleyball</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Chess"}}selected{{/ifCond}} value="Chess">Chess</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Swimming"}}selected{{/ifCond}} value="Swimming">Swimming</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Racing"}}selected{{/ifCond}} value="Racing">Racing</option>-->
+		  <!--<option {{#ifCond user.sport "==" "Other"}}selected{{/ifCond}} value="Other">Other</option>-->
+		<!--</select>-->
+	<!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+	<!--<label for="profileInputStyle" class="col-sm-3 control-label">Clothing style</label>-->
+	<!--<div class="col-sm-9">-->
+	  <!--<select name="style" class="form-control" id="profileInputStyle">-->
+		  <!--<option {{#ifCond user.style "==" "Modern"}}selected{{/ifCond}} value="Modern">Modern</option>-->
+		  <!--<option {{#ifCond user.style "==" "Classic"}}selected{{/ifCond}} value="Classic">Classic</option>-->
+		<!--</select>-->
+	<!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+	<!--<label for="profileInputPet" class="col-sm-3 control-label">Favorite pets</label>-->
+	<!--<div class="col-sm-9">-->
+	  <!--<select name="pet" class="form-control" id="profileInputPet">-->
+		  <!--<option {{#ifCond user.pet "==" "Cat"}}selected{{/ifCond}} value="Cat">Cat</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Dog"}}selected{{/ifCond}} value="Dog">Dog</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Hamster"}}selected{{/ifCond}} value="Hamster">Hamster</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Mouse"}}selected{{/ifCond}} value="Mouse">Mouse</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Parrot"}}selected{{/ifCond}} value="Parrot">Parrot</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Cavy"}}selected{{/ifCond}} value="Cavy">Cavy</option>-->
+		  <!--<option {{#ifCond user.pet "==" "Other"}}selected{{/ifCond}} value="Other">Other</option>-->
+		<!--</select>-->
+	<!--</div>-->
+  <!--</div>-->
 
   <div class="form-group">
-	<div class="col-sm-offset-4 col-sm-6">
+	<div class="col-sm-offset-5 col-sm-6">
 	{{#ifCond page "==" "sign_up"}}
 		<button type="submit" class="btn btn-success">Sign up</button>
 	{{else}}

@@ -115,9 +115,12 @@
 	margin: 0 auto;
 	color: #666
 }
+#profile-form {
+	max-width: 850px;
+}
 #profile-form h2, #signin-form h2, #shopping-profile h2{
 	text-align: center;
-	margin: 25px 0 25px 65px;
+	margin: 25px 0 25px 5px;
 }
 #profile-form button, #signin-form button {
 	margin: 20px 0 0;
