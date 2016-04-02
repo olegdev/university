@@ -145,15 +145,57 @@ var initGraph = function() {
 		return;
 	}
 
-  // create an array with nodes
-  var nodes = new vis.DataSet([
-    {id: 1,  shape: 'circularImage', image: '/img/ava_'+ window.userAvatar +'.png', title: '<div class="graph-popup"><i>Med</i></div>'},
-    {id: 2,  shape: 'circularImage', image: '/img/ava_2.png', title: "Somebody<br/>asd"},
-    {id: 3,  shape: 'circularImage', image: '/img/ava_3.png', title: "Somebody"},
-    {id: 4,  shape: 'circularImage', image: '/img/ava_5.png', title: "Somebody"},
-    {id: 5,  shape: 'circularImage', image: '/img/ava_6.png', title: "Somebody"},
-    {id: 6,  shape: 'circularImage', image: '/img/ava_7.png', title: "Somebody"},
-  ]);
+	var nodesData = [{
+		id: 1,
+		ava: window.user.avatar,
+		title: window.user.firstName + ' ' + window.user.lastName,
+		descr: 'About me text About me text About me text About me text About me text About me text About me text ',
+	},
+	{
+		id: 2,
+		ava: 2,
+		title: 'Jenna Clarson',
+		descr: 'About jenna text',
+	},
+	{
+		id: 3,
+		ava: 3,
+		title: 'Felix Faberman',
+		descr: 'About felix text',
+	},
+	{
+		id: 4,
+		ava: 4,
+		title: 'John Door',
+		descr: 'About john text',
+	},
+	{
+		id: 5,
+		ava: 5,
+		title: 'Sara Grahamm',
+		descr: 'About sara text',
+	},
+	{
+		id: 6,
+		ava: 6,
+		title: 'Frank Leonardy',
+		descr: 'About frank text',
+	}];
+
+	var nodes = [];
+	nodesData.forEach(function(data) {
+		nodes.push({
+			id: data.id,
+			shape: 'circularImage',
+			image: '/img/ava_'+ data.ava +'.png',
+			title: [
+				'<div class="graph-popup">',
+					'<div class="title">'+ data.title +'</div>',
+					'<p>'+ data.descr +'</p>',
+				'</div>'
+			].join('')
+		});
+	});
 
   // create an array with edges
   var edges = new vis.DataSet([

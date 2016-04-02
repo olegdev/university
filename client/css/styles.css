@@ -1,4 +1,4 @@
-body {
+body.main {
 	background-color: #061535;
 }
 .container {
@@ -102,15 +102,15 @@ body {
 #toolbar .notif-icon {
 	background-image: url(../img/notif.png);
     background-repeat: no-repeat;
-    background-size: 70%;
-    width: 48px;
+    background-size: 100%;
+    width: 30px;
     height: 48px;
     display: inline-block;
-    padding: 12px 14px 0 10px;
+    padding: 12px 2px 0 10px;
     color: red;
     font-weight: bold;
     text-decoration: none;
-    margin: 0px 17px 0 0;
+    margin: 0px 3px 0 -3px;
 }
 #toolbar .notif-icon span {
 	font-size: 22px;
@@ -122,6 +122,13 @@ body {
 #toolbar .profile-btn {
 	display: inline-block;
     overflow: hidden;
+}
+#toolbar .avatar-icon {
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+    overflow: hidden;
+    margin: -10px 0 0 10px;
 }
 
 /**
@@ -161,6 +168,7 @@ body {
     height: 55px;
     background-size: contain;
     margin: -8px;
+    cursor: pointer;
 }
 .avatar-icon-1 {
 	background-image: url(../img/ava_1.png);
@@ -230,9 +238,80 @@ body {
 }
 
 /**
+ * Notifications tip
+ */
+.notif-tooltip .tooltip-inner {
+	display: none;
+}
+.notif-tooltip {
+	opacity: 1 !important;
+	background-color: #fff;
+	padding: 10px 10px;
+	border-radius: 7px;
+	min-width: 200px;
+}
+.notif-tooltip ul {
+	margin: 15px 0 15px 0;
+	padding: 0 20px 0 20px;
+	list-style: none;
+}
+.notif-tooltip li {
+	margin: 0 0 -10px 0;
+	position: relative;
+    border-left: 1px solid #c8c7cc;
+}
+.notif-tooltip li:after {
+	background-color: #fff;
+    border-color: #007AFF;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    bottom: 0;
+    content: "";
+    height: 9px;
+    left: 0;
+    margin-left: -5px;
+    position: absolute;
+    width: 9px;
+    clear: both;
+    bottom: auto;
+    top: 4px;
+}
+.notif-tooltip li.success {
+	border-left-color: #5cb85c;
+}
+.notif-tooltip li.success:after {
+	border-color: #5cb85c;
+}
+.notif-tooltip li > div {
+	margin: 0 0 0 15px;
+}
+.notif-tooltip .time-text {
+	font-size: 12px !important;
+    color: #5b5b60;
+}
+.notif-tooltip p {
+	padding: 0px 0 10px 0;
+	font-size: 13px;
+	color: #000;
+}
+
+
+/**
  * Graph popup
  */
 .graph-popup {
-	font-weight: bold;
 	padding: 10px;
+	font-size: 12px;
+}
+.graph-popup .title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+.graph-popup p {
+	text-align: center;
+	padding: 10px;
+	max-width: 200px;
+	white-space: normal;
 }

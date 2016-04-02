@@ -12,6 +12,10 @@
 <script src="js/vendor/vis/dist/vis.min.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script type="text/javascript">
-	userAvatar = {{{user.avatar}}};
+	window.user = {
+		firstName: "{{{user.firstName}}}",
+		lastName: "{{{user.lastName}}}",
+		avatar: "{{{user.avatar}}}",
+	};
 </script>
 <script src="js/main.js"></script>

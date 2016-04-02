@@ -26,8 +26,8 @@
 			<div class="col-xs-1">
 				<a href="#" class="hexagon-icon" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Main Graph"></a>
 			</div>
-			<div class="col-xs-1"></div>
-			<div class="col-xs-5" style="text-align: center;">
+			
+			<div class="col-xs-6" style="text-align: center;">
 				<div class="input-group search-field">
 			            <div class="input-group-btn">
 			                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
@@ -58,10 +58,58 @@
 			</div>
 
 			<div class="col-xs-4">
-				<a href="#" class="notif-icon" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Notifications"><span>5</span></a>
+				<a href="#" class="notif-icon"><span>5</span></a>
 				<a class="profile-btn" href="/shopping_profile"><button class="btn btn-primary">Edit your shopping profile</button></a>
+				<a href="/profile"><div class="avatar-icon avatar-icon-{{user.avatar}}" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Edit your profile"></div></a>
 			</div>
 		{{/ifContains}}
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(function() {
+		$('.notif-icon').tooltip({
+			trigger: 'hover',
+			placement: 'bottom',
+			title: '4',
+			template: [
+			'<div class="notif-tooltip tooltip" role="tooltip">',
+				'<div class="tooltip-inner"></div>',
+				'<ul>',
+					'<li class="success">',
+						'<div>',
+							'<span class="time-text">2 hours</span>',
+							'<p>Some text here and here and here and here</p>',
+						'</div>',
+					'</li>',
+					'<li>',
+						'<div>',
+							'<span class="time-text">2 hours</span>',
+							'<p>Some text here Some text here Some text here Some text here and here and here and here</p>',
+						'</div>',
+					'</li>',
+					'<li class="success">',
+						'<div>',
+							'<span class="time-text">2 hours</span>',
+							'<p>Some text here and here and here and here</p>',
+						'</div>',
+					'</li>',
+					'<li class="success">',
+						'<div>',
+							'<span class="time-text">2 hours</span>',
+							'<p>Some text here and here and here and here</p>',
+						'</div>',
+					'</li>',
+					'<li>',
+						'<div>',
+							'<span class="time-text">2 hours</span>',
+							'<p>Some text here and here and here and here</p>',
+						'</div>',
+					'</li>',
+				'</ul>',
+			'</div>'
+			].join('')
+		});
+});
+</script>
