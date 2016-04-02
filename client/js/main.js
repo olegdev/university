@@ -10,7 +10,7 @@ var options = {
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, 1, 1, 10000);
-var renderer = new THREE.WebGLRenderer({ alpha: false});
+var renderer = new THREE.WebGLRenderer({ alpha: true });
 var orbit = new THREE.OrbitControls( camera, renderer.domElement );
 orbit.enableZoom = false;
 var raycaster;
@@ -19,7 +19,7 @@ var mouse;
 renderer.setSize(600, 600);
 $('#figure-container').append(renderer.domElement);
 
-var geometry = new THREE.DodecahedronGeometry(300,0);
+var geometry = new THREE.DodecahedronGeometry(450,0);
 // var geometry = new THREE.SphereGeometry( 300, 4, 16 );
 // var geometry = new THREE.BoxGeometry(400,400,400);
 // var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
@@ -31,7 +31,7 @@ var cube;
 var dynamicTexture;
 
 loader.load('img/sample.jpg', function ( sampleTexture ) {
-loader.load('img/shopping_text3.jpg', function ( shoppingTexture ) {
+loader.load('img/shopping_text.jpg', function ( shoppingTexture ) {
 	var boxMaterials = [];
 
 	for(var i = 0; i < 36; i++) {
@@ -147,12 +147,12 @@ var initGraph = function() {
 
   // create an array with nodes
   var nodes = new vis.DataSet([
-    {id: 1,  shape: 'circularImage', image: '/img/ava_'+ window.userAvatar +'.png'},
-    {id: 2,  shape: 'circularImage', image: '/img/ava_2.png'},
-    {id: 3,  shape: 'circularImage', image: '/img/ava_3.png'},
-    {id: 4,  shape: 'circularImage', image: '/img/ava_5.png'},
-    {id: 5,  shape: 'circularImage', image: '/img/ava_6.png'},
-    {id: 6,  shape: 'circularImage', image: '/img/ava_7.png'},
+    {id: 1,  shape: 'circularImage', image: '/img/ava_'+ window.userAvatar +'.png', title: '<div class="graph-popup"><i>Med</i></div>'},
+    {id: 2,  shape: 'circularImage', image: '/img/ava_2.png', title: "Somebody<br/>asd"},
+    {id: 3,  shape: 'circularImage', image: '/img/ava_3.png', title: "Somebody"},
+    {id: 4,  shape: 'circularImage', image: '/img/ava_5.png', title: "Somebody"},
+    {id: 5,  shape: 'circularImage', image: '/img/ava_6.png', title: "Somebody"},
+    {id: 6,  shape: 'circularImage', image: '/img/ava_7.png', title: "Somebody"},
   ]);
 
   // create an array with edges
@@ -182,7 +182,8 @@ var initGraph = function() {
     },
     edges: {
       color: 'lightgray'
-    }
+    },
+    interaction:{hover:true}
   };
 
 	var network = new vis.Network(container, data, options);
