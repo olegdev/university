@@ -154,8 +154,8 @@ var initGraph = function() {
 	{
 		id: 2,
 		ava: 2,
-		title: 'Jenna Clarson',
-		descr: 'About jenna text',
+		title: 'Diego Luchi',
+		descr: 'About diego text',
 	},
 	{
 		id: 3,
@@ -172,14 +172,14 @@ var initGraph = function() {
 	{
 		id: 5,
 		ava: 5,
-		title: 'Sara Grahamm',
-		descr: 'About sara text',
+		title: 'Frank Leonardy',
+		descr: 'About frank text',
 	},
 	{
 		id: 6,
 		ava: 6,
-		title: 'Frank Leonardy',
-		descr: 'About frank text',
+		title: 'Sara Grahamm',
+		descr: 'About sara text',
 	}];
 
 	var nodes = [];
