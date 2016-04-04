@@ -31,7 +31,7 @@ body.main {
  */
 #figure-container {
 	text-align: center;
-	height: 605px;
+	height: 500px;
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
@@ -57,14 +57,14 @@ body.main {
 	height: 100%;
 }
 #chat-container {
-	background-image: url(../img/email_bg.png);
+	background-image: url(../img/chat_bg.png);
 	background-size: cover;
 }
  #mynetwork {
   	width: 600px;
-	height: 400px;
+	/*height: 400px;*/
 	position: relative;
-	height: 565px;
+	height: 500px;
 	margin: 20px auto;
 	display: none;
 }
