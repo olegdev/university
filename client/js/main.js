@@ -134,6 +134,7 @@ $('.search-field .dropdown-menu li').click(function() {
 	$('.search-field input').focus();
 });
 
+
 // ----------------- Graph -------------------------------- //
 
 var graphInitialized = false;
