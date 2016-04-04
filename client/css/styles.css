@@ -3,6 +3,11 @@ body.main {
 }
 .container {
 	min-width: 960px !important;
+
+}
+#body-wrap {
+	background-image: url(../img/network1_2.jpg);
+	background-size: cover;
 }
 
 /** 
@@ -32,6 +37,7 @@ body.main {
 #figure-container {
 	text-align: center;
 	height: 500px;
+
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
