@@ -36,7 +36,7 @@ body.main {
  */
 #figure-container {
 	text-align: center;
-	height: 500px;
+	height: 605px;
 
 }
 #chat-container, #email-container {
@@ -70,7 +70,7 @@ body.main {
   	width: 600px;
 	/*height: 400px;*/
 	position: relative;
-	height: 500px;
+	height: 565px;
 	margin: 20px auto;
 	display: none;
 }
