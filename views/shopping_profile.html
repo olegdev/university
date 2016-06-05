@@ -1,9 +1,16 @@
-<div id="shopping-profile" class="container">
+<div id="shopping-profile" class="container profile-page">
 <div class="row">
 
 <h2>Edit your shopping profile</h2>
 
-<form id="profile-form" class="form-horizontal" action="shopping_profile" method="post">
+<form id="profile-form" class="form-horizontal" action="profile?type={{profile.type}}" method="post">
+
+	<h4>Basic info</h4>
+
+	<div class="profile-basic-info">
+		{{> photo_upload }}
+		{{> connections }}
+	</div>
 
 	<h4>What are your sizes?</h4>
 	<h5>Clothes</h5>
@@ -11,20 +18,20 @@
 		<label class="col-sm-4 control-label">Dress</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.dressSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.dressSize "==" "option1"}}checked="checked"{{/ifCond}}" name="dressSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.dressSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.dressSize "==" "option1"}}checked="checked"{{/ifCond}}" name="dressSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.dressSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.dressSize "==" "option2"}}checked="checked"{{/ifCond}}" name="dressSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.dressSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.dressSize "==" "option2"}}checked="checked"{{/ifCond}}" name="dressSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.dressSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.dressSize "==" "option3"}}checked="checked"{{/ifCond}}" name="dressSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.dressSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.dressSize "==" "option3"}}checked="checked"{{/ifCond}}" name="dressSize" value="option3" autocomplete="off">L
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.dressSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.dressSize "==" "option4"}}checked="checked"{{/ifCond}}" name="dressSize" value="option4" autocomplete="off">XL
+				<label class="btn btn-info {{#ifCond profile.dressSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.dressSize "==" "option4"}}checked="checked"{{/ifCond}}" name="dressSize" value="option4" autocomplete="off">XL
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.dressSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.dressSize "==" "option5"}}checked="checked"{{/ifCond}}" name="dressSize" value="option5" autocomplete="off">XS
+				<label class="btn btn-info {{#ifCond profile.dressSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.dressSize "==" "option5"}}checked="checked"{{/ifCond}}" name="dressSize" value="option5" autocomplete="off">XS
 				</label>
 			</div>
 		</div>
@@ -34,20 +41,20 @@
 		<label class="col-sm-4 control-label">Pants</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantsSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.pantsSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantsSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.pantsSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantsSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.pantsSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option3" autocomplete="off">L
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantsSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantsSize "==" "option4"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option4" autocomplete="off">XL
+				<label class="btn btn-info {{#ifCond profile.pantsSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantsSize "==" "option4"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option4" autocomplete="off">XL
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantsSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantsSize "==" "option5"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option5" autocomplete="off">XS
+				<label class="btn btn-info {{#ifCond profile.pantsSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantsSize "==" "option5"}}checked="checked"{{/ifCond}}" name="pantsSize" value="option5" autocomplete="off">XS
 				</label>
 			</div>
 		</div>
@@ -57,20 +64,20 @@
 		<label class="col-sm-4 control-label">Swimwear</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.SwimwearSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.SwimwearSize "==" "option1"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.SwimwearSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.SwimwearSize "==" "option1"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.SwimwearSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.SwimwearSize "==" "option2"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.SwimwearSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.SwimwearSize "==" "option2"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.SwimwearSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.SwimwearSize "==" "option3"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.SwimwearSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.SwimwearSize "==" "option3"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option3" autocomplete="off">L
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.SwimwearSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.SwimwearSize "==" "option4"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option4" autocomplete="off">XL
+				<label class="btn btn-info {{#ifCond profile.SwimwearSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.SwimwearSize "==" "option4"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option4" autocomplete="off">XL
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.SwimwearSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.SwimwearSize "==" "option5"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option5" autocomplete="off">XS
+				<label class="btn btn-info {{#ifCond profile.SwimwearSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.SwimwearSize "==" "option5"}}checked="checked"{{/ifCond}}" name="SwimwearSize" value="option5" autocomplete="off">XS
 				</label>
 			</div>
 		</div>
@@ -81,17 +88,17 @@
 		<label class="col-sm-4 control-label">Bra</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.braSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.braSize "==" "option1"}}checked="checked"{{/ifCond}}" name="braSize" value="option1" autocomplete="off" >32
+				<label class="btn btn-info {{#ifCond profile.braSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.braSize "==" "option1"}}checked="checked"{{/ifCond}}" name="braSize" value="option1" autocomplete="off" >32
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.braSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.braSize "==" "option2"}}checked="checked"{{/ifCond}}" name="braSize" value="option2" autocomplete="off">34
+				<label class="btn btn-info {{#ifCond profile.braSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.braSize "==" "option2"}}checked="checked"{{/ifCond}}" name="braSize" value="option2" autocomplete="off">34
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.braSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.braSize "==" "option3"}}checked="checked"{{/ifCond}}" name="braSize" value="option3" autocomplete="off">36
+				<label class="btn btn-info {{#ifCond profile.braSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.braSize "==" "option3"}}checked="checked"{{/ifCond}}" name="braSize" value="option3" autocomplete="off">36
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.braSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.braSize "==" "option4"}}checked="checked"{{/ifCond}}" name="braSize" value="option4" autocomplete="off">38
+				<label class="btn btn-info {{#ifCond profile.braSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.braSize "==" "option4"}}checked="checked"{{/ifCond}}" name="braSize" value="option4" autocomplete="off">38
 				</label>
 			</div>
 		</div>
@@ -101,20 +108,20 @@
 		<label class="col-sm-4 control-label">Panties</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantiesSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantiesSize "==" "option1"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.pantiesSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantiesSize "==" "option1"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantiesSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantiesSize "==" "option2"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.pantiesSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantiesSize "==" "option2"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantiesSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantiesSize "==" "option3"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.pantiesSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantiesSize "==" "option3"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option3" autocomplete="off">L
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantiesSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantiesSize "==" "option4"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option4" autocomplete="off">XL
+				<label class="btn btn-info {{#ifCond profile.pantiesSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantiesSize "==" "option4"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option4" autocomplete="off">XL
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.pantiesSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.pantiesSize "==" "option5"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option5" autocomplete="off">XS
+				<label class="btn btn-info {{#ifCond profile.pantiesSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.pantiesSize "==" "option5"}}checked="checked"{{/ifCond}}" name="pantiesSize" value="option5" autocomplete="off">XS
 				</label>
 			</div>
 		</div>
@@ -124,20 +131,20 @@
 		<label class="col-sm-4 control-label">Sleepwear</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.sleepwearSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.sleepwearSize "==" "option1"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.sleepwearSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.sleepwearSize "==" "option1"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.sleepwearSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.sleepwearSize "==" "option2"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.sleepwearSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.sleepwearSize "==" "option2"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.sleepwearSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.sleepwearSize "==" "option3"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.sleepwearSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.sleepwearSize "==" "option3"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option3" autocomplete="off">L
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.sleepwearSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.sleepwearSize "==" "option4"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option4" autocomplete="off">XL
+				<label class="btn btn-info {{#ifCond profile.sleepwearSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.sleepwearSize "==" "option4"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option4" autocomplete="off">XL
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.sleepwearSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.sleepwearSize "==" "option5"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option5" autocomplete="off">XS
+				<label class="btn btn-info {{#ifCond profile.sleepwearSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.sleepwearSize "==" "option5"}}checked="checked"{{/ifCond}}" name="sleepwearSize" value="option5" autocomplete="off">XS
 				</label>
 			</div>
 		</div>
@@ -148,7 +155,7 @@
 	<div class="form-group">
 		<label for="profileInputGlasses" class="col-sm-4 control-label">Glasses</label>
 		<div class="col-sm-8">
-			<input type="number" class="form-control" name="glasses" id="profileInputGlasses" placeholder="Glasses" value="{{shoppingProfile.glasses}}">
+			<input type="number" class="form-control" name="glasses" id="profileInputGlasses" placeholder="Glasses" value="{{profile.glasses}}">
 		</div>
 	</div>
 
@@ -156,14 +163,14 @@
 		<label class="col-sm-4 control-label">Belts</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.beltsSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.beltsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.beltsSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.beltsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.beltsSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.beltsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.beltsSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.beltsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.beltsSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.beltsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.beltsSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.beltsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="beltsSize" value="option3" autocomplete="off">L
 				</label>
 			</div>
 		</div>
@@ -173,14 +180,14 @@
 		<label class="col-sm-4 control-label">Hats</label>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.hatsSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.hatsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option1" autocomplete="off" >S
+				<label class="btn btn-info {{#ifCond profile.hatsSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.hatsSize "==" "option1"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option1" autocomplete="off" >S
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.hatsSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.hatsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option2" autocomplete="off">M
+				<label class="btn btn-info {{#ifCond profile.hatsSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.hatsSize "==" "option2"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option2" autocomplete="off">M
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.hatsSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.hatsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option3" autocomplete="off">L
+				<label class="btn btn-info {{#ifCond profile.hatsSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.hatsSize "==" "option3"}}checked="checked"{{/ifCond}}" name="hatsSize" value="option3" autocomplete="off">L
 				</label>
 			</div>
 		</div>
@@ -193,29 +200,29 @@
 		<div class="col-sm-4"></div>
 		<div class="col-sm-8">
 			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option1"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option1"}}checked="checked"{{/ifCond}}" name="footSize" value="option1" autocomplete="off" >5
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option1"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option1"}}checked="checked"{{/ifCond}}" name="footSize" value="option1" autocomplete="off" >5
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option2"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option2"}}checked="checked"{{/ifCond}}" name="footSize" value="option2" autocomplete="off">6
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option2"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option2"}}checked="checked"{{/ifCond}}" name="footSize" value="option2" autocomplete="off">6
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option3"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option3"}}checked="checked"{{/ifCond}}" name="footSize" value="option3" autocomplete="off">6.5
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option3"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option3"}}checked="checked"{{/ifCond}}" name="footSize" value="option3" autocomplete="off">6.5
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option4"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option4"}}checked="checked"{{/ifCond}}" name="footSize" value="option4" autocomplete="off">7.5
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option4"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option4"}}checked="checked"{{/ifCond}}" name="footSize" value="option4" autocomplete="off">7.5
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">8
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">8
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">8.5
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">8.5
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">9
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">9
 				</label>
-				<label class="btn btn-info {{#ifCond shoppingProfile.footSize "==" "option5"}}active{{/ifCond}}">
-					<input type="radio" {{#ifCond shoppingProfile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">10
+				<label class="btn btn-info {{#ifCond profile.footSize "==" "option5"}}active{{/ifCond}}">
+					<input type="radio" {{#ifCond profile.footSize "==" "option5"}}checked="checked"{{/ifCond}}" name="footSize" value="option5" autocomplete="off">10
 				</label>
 			</div>
 		</div>
@@ -225,15 +232,15 @@
 	<div class="form-group">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-8">
-			<select name="bodyShapeType" class="form-control" id="profileInputBodyShapeType" value="{{shoppingProfile.bodyShapeType}}">
-				<option value="1" {{#ifCond shoppingProfile.bodyShapeType "==" 1}}selected{{/ifCond}}>Normal Figure</option>
-				<option value="2" {{#ifCond shoppingProfile.bodyShapeType "==" 2}}selected{{/ifCond}}>Broad At Top</option>
-				<option value="3" {{#ifCond shoppingProfile.bodyShapeType "==" 3}}selected{{/ifCond}}>Broad At Bottom</option>
-				<option value="4" {{#ifCond shoppingProfile.bodyShapeType "==" 4}}selected{{/ifCond}}>Hourglass Curvy</option>
-				<option value="5" {{#ifCond shoppingProfile.bodyShapeType "==" 5}}selected{{/ifCond}}>Oval Overall</option>
-				<option value="6" {{#ifCond shoppingProfile.bodyShapeType "==" 6}}selected{{/ifCond}}>Narrow And Straight</option>
-				<option value="7" {{#ifCond shoppingProfile.bodyShapeType "==" 7}}selected{{/ifCond}}>Broad And Straight</option>
-				<option value="8" {{#ifCond shoppingProfile.bodyShapeType "==" 8}}selected{{/ifCond}}>A typical</option>
+			<select name="bodyShapeType" class="form-control" id="profileInputBodyShapeType" value="{{profile.bodyShapeType}}">
+				<option value="1" {{#ifCond profile.bodyShapeType "==" 1}}selected{{/ifCond}}>Normal Figure</option>
+				<option value="2" {{#ifCond profile.bodyShapeType "==" 2}}selected{{/ifCond}}>Broad At Top</option>
+				<option value="3" {{#ifCond profile.bodyShapeType "==" 3}}selected{{/ifCond}}>Broad At Bottom</option>
+				<option value="4" {{#ifCond profile.bodyShapeType "==" 4}}selected{{/ifCond}}>Hourglass Curvy</option>
+				<option value="5" {{#ifCond profile.bodyShapeType "==" 5}}selected{{/ifCond}}>Oval Overall</option>
+				<option value="6" {{#ifCond profile.bodyShapeType "==" 6}}selected{{/ifCond}}>Narrow And Straight</option>
+				<option value="7" {{#ifCond profile.bodyShapeType "==" 7}}selected{{/ifCond}}>Broad And Straight</option>
+				<option value="8" {{#ifCond profile.bodyShapeType "==" 8}}selected{{/ifCond}}>A typical</option>
 			</select>
 		</div>
 	</div>
@@ -242,11 +249,11 @@
 	<div class="form-group">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-8">
-			<select name="style" class="form-control" id="profileInputStyle" value="{{shoppingProfile.style}}">
-				<option value="1" {{#ifCond shoppingProfile.style "==" 1}}selected{{/ifCond}}>Modern</option>
-				<option value="2" {{#ifCond shoppingProfile.style "==" 2}}selected{{/ifCond}}>Classic</option>
-				<option value="3" {{#ifCond shoppingProfile.style "==" 3}}selected{{/ifCond}}>Hippy</option>
-				<option value="4" {{#ifCond shoppingProfile.style "==" 4}}selected{{/ifCond}}>Professional</option>
+			<select name="style" class="form-control" id="profileInputStyle" value="{{profile.style}}">
+				<option value="1" {{#ifCond profile.style "==" 1}}selected{{/ifCond}}>Modern</option>
+				<option value="2" {{#ifCond profile.style "==" 2}}selected{{/ifCond}}>Classic</option>
+				<option value="3" {{#ifCond profile.style "==" 3}}selected{{/ifCond}}>Hippy</option>
+				<option value="4" {{#ifCond profile.style "==" 4}}selected{{/ifCond}}>Professional</option>
 			</select>
 		</div>
 	</div>

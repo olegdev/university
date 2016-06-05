@@ -9,13 +9,13 @@
 			<a href="/sign_up"><button class="btn btn-success">Sign Up</button></a>
 		{{/ifContains}}
 
-		{{#ifContains page "profile"}}
-			<a href="/shopping_profile"><button class="btn btn-primary">Shopping profile</button></a>
+		{{#ifContains page "account"}}
+<!-- 			<a href="/profile?type=shopping"><button class="btn btn-primary">Shopping profile</button></a> -->
 			<a href="/"><button class="btn btn-primary">Main</button></a>
 		{{/ifContains}}
 
-		{{#ifContains page "shopping_profile"}}
-			<a href="/profile"><button class="btn btn-primary">Account profile</button></a>
+		{{#ifContains page "profile"}}
+			<a href="/account"><button class="btn btn-primary">Account profile</button></a>
 			<a href="/"><button class="btn btn-primary">Main</button></a>
 		{{/ifContains}}
 
@@ -59,8 +59,8 @@
 
 			<div class="col-xs-4">
 				<a href="#" class="notif-icon"><span>5</span></a>
-				<a class="profile-btn" href="/shopping_profile"><button class="btn btn-primary">Edit your shopping profile</button></a>
-				<a href="/profile"><div class="avatar-icon avatar-icon-{{user.avatar}}" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Edit your profile"></div></a>
+				<!-- <a class="profile-btn" href="/profile?type=shopping"><button class="btn btn-primary">Edit your shopping profile</button></a> -->
+				<a href="/account"><div class="avatar-icon avatar-icon-{{user.avatar}}" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Edit your profile"></div></a>
 			</div>
 		{{/ifContains}}
 

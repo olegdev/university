@@ -1,0 +1,222 @@
+{{#ifCond page "==" "sign_up"}}
+	<form id="account-form" class="form-horizontal" action="sign_up" method="post">
+{{else}}
+	<form id="account-form" class="form-horizontal" action="account" method="post">
+{{/ifCond}}
+
+<div class="col-xs-6">
+	<h2>Personal info</h2>
+
+  <div class="form-group">
+	<label for="accountInputFirstName" class="col-sm-3 control-label">First name</label>
+	<div class="col-sm-9">
+	  <input type="text" class="form-control" name="firstName" id="accountInputFirstName" placeholder="First name" value="{{user.firstName}}">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputLastName" class="col-sm-3 control-label">Last name</label>
+	<div class="col-sm-9">
+	  <input type="text" class="form-control" name="lastName" id="accountInputLastName" placeholder="Last name" value="{{user.lastName}}">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputAge" class="col-sm-3 control-label">Age</label>
+	<div class="col-sm-9">
+	  <input type="number" class="form-control" name="age" id="accountInputAge" placeholder="Age" value="{{user.age}}">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputGender" class="col-sm-3 control-label">Gender</label>
+	<div class="col-sm-9">
+	  <select name="gender" class="form-control" id="accountInputGender" value="{{user.gender}}">
+		  <option value="1" {{#ifCond user.gender "==" 1}}selected{{/ifCond}}>Male</option>
+		  <option value="2" {{#ifCond user.gender "==" 2}}selected{{/ifCond}}>Female</option>
+		</select>
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputCountry" class="col-sm-3 control-label">Country</label>
+	<div class="col-sm-9">
+	  <select name="country" class="form-control bfh-countries" data-country="{{user.country}}" id="accountInputCountry"></select>
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputCity" class="col-sm-3 control-label">City</label>
+	<div class="col-sm-9">
+	  <input type="text" class="form-control" name="city" id="accountInputCity" placeholder="City" value="{{user.city}}">
+	</div>
+  </div>
+
+  <div class="form-group" style="height: 90px;">
+	<label for="accountInputAvatar" class="col-sm-3 control-label">Avatar</label>
+	<div class="col-sm-9" style="position: relative;">
+	  <input id="avatar-input" type="text" class="form-control" name="avatar" id="accountInputAvatar" placeholder="" value="{{user.avatar}}">
+	  <div id="avatar-image">
+	  	{{#if user.avatar }}
+	  		<div class="avatar-icon avatar-icon-{{user.avatar}}"></div>
+	  	{{/if}}
+	  </div>
+	</div>
+  </div>
+
+{{#ifCond page "==" "sign_up"}}
+  <div class="form-group">
+	<label for="accountInputEmail" class="col-sm-3 control-label">Email</label>
+	<div class="col-sm-9">
+	  <input type="email" class="form-control" name="email" id="accountInputEmail" placeholder="Email">
+	</div>
+  </div>
+
+  <div class="form-group">
+	<label for="accountInputPass" class="col-sm-3 control-label">Password</label>
+	<div class="col-sm-9">
+	  <input type="password" class="form-control" name="pass" id="accountInputPass" placeholder="Password">
+	</div>
+  </div>
+{{/ifCond}}
+
+</div>
+<div id="universes-wrapper" class="col-xs-6" style="padding: 0 0 0 33px">
+
+ <h2 style="margin: 25px 0 25px -50px;">Universes</h2>
+ 	<div class="form-group">
+		<div class="col-xs-6" style="padding: 0;">
+		 	 <input type="text" class="form-control" disabled name="" value="Shopping">
+		</div>
+		<div class="col-xs-6">
+			<button type="edit" data-profile_type="shopping" class="btn btn-success">Edit</button>
+			<button type="remove" class="btn btn-danger disabled">Remove</button>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-xs-6" style="padding: 0;">
+		 	 <input type="text" class="form-control" disabled name="" value="Professional">
+		</div>
+		<div class="col-xs-6">
+			<button type="edit"  data-profile_type="professional" class="btn btn-success">Edit</button>
+			<button type="remove" class="btn btn-danger disabled">Remove</button>
+		</div>
+	</div>
+
+	<div class="col-xs-12">
+		<button type="add" class="btn btn-success" style="margin: 0 0 0 120px;">Add</button>
+	</div>
+
+</div>
+
+  <div class="form-group">
+	<div class="col-sm-offset-5 col-sm-6">
+	{{#ifCond page "==" "sign_up"}}
+		<button type="submit" class="btn btn-success">Sign up</button>
+	{{else}}
+		<button type="submit" class="btn btn-success">Save changes</button>
+	{{/ifCond}}
+	</div>
+  </div>
+
+</form>
+
+<script type="text/javascript">
+
+	// -------------- Avatar ---------------
+
+	$('#avatar-input').picker({
+		title: 'Choose your avatar', 
+	    items: [
+	    	'<div class="avatar-icon avatar-icon-1" data-value="1"></div>',
+	    	'<div class="avatar-icon avatar-icon-2" data-value="2"></div>',
+	    	'<div class="avatar-icon avatar-icon-3" data-value="3"></div>',
+	    	'<div class="avatar-icon avatar-icon-4" data-value="4"></div>',
+	    	'<div class="avatar-icon avatar-icon-5" data-value="5"></div>',
+	    	'<div class="avatar-icon avatar-icon-6" data-value="6"></div>',
+	    	'<div class="avatar-icon avatar-icon-7" data-value="7"></div>',
+	    	'<div class="avatar-icon avatar-icon-8" data-value="8"></div>',
+	    	'<div class="avatar-icon avatar-icon-9" data-value="9"></div>',
+	    	'<div class="avatar-icon avatar-icon-10" data-value="10"></div>',
+	    	'<div class="avatar-icon avatar-icon-11" data-value="11"></div>',
+	    	'<div class="avatar-icon avatar-icon-12" data-value="12"></div>',
+	    ],
+	    placement:'bottomRight',
+	    fiter: false,
+	});
+
+	$('#avatar-input').on('pickerSelect', function() {
+		var el = this;
+		setTimeout(function() {
+			$('#avatar-image').html($(el).val());
+			var val = $('#avatar-image .avatar-icon')[0].getAttribute('data-value');
+			$('#avatar-input').val(val);
+		}, 0);
+	});
+
+	$('#avatar-image').click(function() {
+		$('#avatar-input').data('picker').toggle();
+	});
+
+	// -------------- Universes controls ----------------
+
+	var printProfileControls = function(profileType) {
+		var types = ['pet', 'sport', 'hobby', 'design', 'books'],
+			html = [];
+
+		profileType = profileType || types[0];
+
+		var html = [
+			'<div class="form-group">',
+				'<div class="col-xs-6" style="padding: 0;">',
+				  '<select name="exists_profiles" class="form-control">',
+		];
+
+		types.forEach(function(type) {
+			html.push('<option value="'+ type +'" '+ (type == profileType ? 'selected' : '') +'>'+ type.charAt(0).toUpperCase() + type.substr(1) +'</option>');
+		});
+
+		html = html.concat([
+				'</select>',
+				'</div>',
+				'<div class="col-xs-6">',
+					'<button type="edit" data-profile_type="'+ profileType +'" class="btn btn-success">Edit</button>',
+					' <button type="remove" data-profile_type="'+ profileType +'"class="btn btn-danger">Remove</button>',
+				'</div>',
+			'</div>',
+		]);
+
+		$(html.join('')).insertBefore( $('button[type="add"]').parent() );
+	}
+
+	$(document.body).delegate('button[type="edit"]', 'click', function(e) {
+		e.preventDefault();
+		window.location = '/' + 'profile?type=' + $(this).attr('data-profile_type');
+	});
+
+	$(document.body).delegate('button[type="remove"]', 'click', function(e) {
+		e.preventDefault();
+		if (!$(this).hasClass('disabled')) {
+			$(this).parent().parent().remove();
+		}
+	});
+
+	$('button[type="add"]').click(function(e) {
+		e.preventDefault();
+		printProfileControls();
+	});
+
+	$(document.body).delegate('select[name="exists_profiles"]', 'change', function() {
+		$(this).parent().parent().find('button').attr('data-profile_type', $(this).val());
+	});
+
+	var existsProfiles = [];
+	{{#if user.exists_profiles }}
+		existsProfiles = {{{ json user.exists_profiles }}};
+	{{/if}}
+	existsProfiles.forEach(function(profileType) {
+		printProfileControls(profileType)
+	});
+
+</script>

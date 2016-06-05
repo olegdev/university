@@ -1,5 +1,15 @@
 <div id="figure-bg"></div>
-<div id="figure-container"></div>
+<div id="figure-container">
+	<div id="figure-legend">
+		{{#if user.profiles}}
+			<ul>
+			{{#each user.profiles }}
+				<li><div style="background-color: {{this.color}}"></div>{{this.title}}</li>
+			{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+</div>
 <div id="mynetwork"></div>
 <div class="row">
 <div id="chat-container" class="col-xs-6"><div></div></div>

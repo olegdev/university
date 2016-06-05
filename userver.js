@@ -14,11 +14,11 @@ var mongoose = require('mongoose');
 var https = require('https');
 var fs = require('fs');
 var join = require('path').join;
+var fileUpload = require('express-fileupload');
 
 var logger = require(SERVICES_PATH + '/logger/logger')(__filename);
 var dbconnect = require(SERVICES_PATH + '/dbconnect/dbconnect');
-
-var auth = require(SERVICES_PATH + '/auth');
+var routes = require(SERVICES_PATH + '/routes');
 
 //============= Create server ============
 
@@ -29,6 +29,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 app.use(cookieParser());
+
+app.use(fileUpload());
 
 // =========== DB connect as middleware ===============
 
@@ -93,160 +95,16 @@ var hbs = exphbs.create({
 			var v = args.shift();
 			var options = arguments[arguments.length-1];
 			return args.indexOf(v) != -1 ? options.fn(this) : options.inverse(this);
+		},
+		json: function(obj) {
+			return JSON.stringify(obj);
 		}
     }
 });
 app.engine('html', hbs.engine);
 app.set('view engine', 'html');
 
-
-// ============== ROUTES ================
-
-app.get("/", function(req, res, next) {
-	if (!req.session.uid) {
-		res.redirect('/landing');
-	} else {
-		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-			if (!err) {
-				if (user) {
-					res.render('main', {page: 'main', user: user});
-				} else {
-					/****/ logger.error('User not found by session uid ');
-				}			
-			} else {
-				/****/ logger.error('Cannot find user cause DB error ' + err);
-			}
-		});
-	}
-});
-app.get("/landing", function(req, res, next) {
-	res.render('landing', {page: 'landing'});
-});
-app.get("/sign_up", function(req, res, next) {
-	res.render('sign_up', {page: 'sign_up'});
-});
-app.post("/sign_up", function(req, res, next) {
-	var ModelClass = mongoose.model('users');
-	var model = new ModelClass(req.body);
-	model.save(function(err) {
-		if (!err) {
-			req.session.uid = model.id;
-			res.redirect('/');
-		} else {
-			/****/ logger.error('Cannot save user cause DB error ' + err);
-		}
-	});
-});
-app.get("/sign_in", function(req, res, next) {
-	res.render('sign_in', {page: 'sign_in'});
-});
-app.post("/sign_in", function(req, res, next) {
-	mongoose.model('users').findOne({email: req.body.email, pass: req.body.pass}, function(err, user) {
-		if (!err) {
-			if (user) {
-				req.session.uid = user.get('id');
-				res.redirect('/');
-			} else {
-				res.redirect('/sign_in');
-			}			
-		} else {
-			/****/ logger.error('Cannot find user cause DB error ' + err);
-		}
-	})
-});
-app.get("/profile", function(req, res, next) {
-	if (!req.session.uid) {
-		res.redirect('/');
-	} else {
-		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-			if (!err) {
-				if (user) {
-					res.render('profile', {page: 'profile', user: user});
-				} else {
-					/****/ logger.error('User not found by session uid ');
-				}			
-			} else {
-				/****/ logger.error('Cannot find user cause DB error ' + err);
-			}
-		});
-	}
-});
-app.post("/profile", function(req, res, next) {
-	if (!req.session.uid) {
-		res.redirect('/');
-	} else {
-		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-			if (!err) {
-				if (user) {
-					if (!req.body.sport) {
-						req.body.sport = undefined;
-					}
-					if (!req.body.pet) {
-						req.body.pet = undefined;
-					}
-					if (!req.body.style) {
-						req.body.style = undefined;
-					}
-					user.set(req.body);
-					user.save(function(err) {
-						if (!err) {
-							res.redirect('/');
-						} else {
-							/****/ logger.error('Cannot save profile cause DB error ' + err);
-						}
-					});
-				} else {
-					/****/ logger.error('User not found by session uid ');
-				}			
-			} else {
-				/****/ logger.error('Cannot find user cause DB error ' + err);
-			}
-		});
-	}
-});
-app.get("/shopping_profile", function(req, res, next) {
-	if (!req.session.uid) {
-		res.redirect('/');
-	} else {
-		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-			if (!err) {
-				if (user) {
-					res.render('shopping_profile', {page: 'shopping_profile', shoppingProfile: user.get('shoppingProfile') || {}});
-				} else {
-					/****/ logger.error('User not found by session uid ');
-				}			
-			} else {
-				/****/ logger.error('Cannot find user cause DB error ' + err);
-			}
-		});
-	}
-});
-app.post("/shopping_profile", function(req, res, next) {
-	if (!req.session.uid) {
-		res.redirect('/');
-	} else {
-		mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-			if (!err) {
-				if (user) {
-					console.log(req.body);
-					user.set("shoppingProfile", req.body);
-					user.save(function(err) {
-						if (!err) {
-							res.redirect('/');
-						} else {
-							/****/ logger.error('Cannot save profile cause DB error ' + err);
-						}
-					});
-				} else {
-					/****/ logger.error('User not found by session uid ');
-				}			
-			} else {
-				/****/ logger.error('Cannot find user cause DB error ' + err);
-			}
-		});
-	}
-});
-
+routes.init(app);
 
 var server = app.listen(CONFIG.port);
 

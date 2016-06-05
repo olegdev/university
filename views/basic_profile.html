@@ -1,0 +1,22 @@
+<div class="container profile-page">
+<div class="row">
+
+<h2>Edit your {{profile.type}} profile</h2>
+
+<form id="profile-form" class="form-horizontal" action="profile?type={{profile.type}}" method="post">
+
+	<h4>Basic info</h4>
+
+	<div class="profile-basic-info">
+		{{> photo_upload }}
+		{{> connections }}
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-6">
+			<button type="submit" class="btn btn-success">Save changes</button>
+		</div>
+  </div>
+
+</form>

@@ -1,0 +1,82 @@
+<div class="connections-wrap">
+	Connections:
+	{{#if profile.connections.length}}
+	<button type="connections" class="btn">{{{profile.connections.length}}} connection(s)</button>
+	{{else}}
+	<button type="connections" class="btn">Add connections</button>
+	{{/if}}
+
+	<div class="connections-window">
+		<button class="btn btn-danger connections-close">X</button>
+	</div>
+
+	{{#each profile.connections}}
+		<input data-connection_id="{{this}}" type="text" name="connections" value="{{this}}" hidden />
+	{{/each}}
+
+</div>
+
+<script type="text/javascript">
+
+	var myConnections = {{{ json profile.connections }}};
+
+	$('button[type="connections"]').click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type: 'get',
+			url: 'connections?type={{ profile.type }}',
+			success: function(data) {
+				showConnections(data);
+			},
+		});
+	});
+
+	$('.connections-close').click(function(e) {
+		e.preventDefault();
+		$('.connections-window').hide();
+	});
+
+	$(document.body).delegate('.connections-window li', 'click', function() {
+		var $el = $(this),
+			id = $el.attr('data-id');
+
+		if ($el.hasClass('connected')) {
+			myConnections.splice(myConnections.indexOf(id), 1);
+			$el.removeClass('connected');
+			$('input[data-connection_id="'+ id +'"]').remove();
+		} else {
+			myConnections.push(id);
+			$el.addClass('connected');
+			$('.connections-wrap').append('<input data-connection_id="'+ id +'" type="text" name="connections" value="'+ id +'" hidden />');
+		}
+
+		$('button[type="connections"]').text(myConnections.length ? myConnections.length + ' connection(s)' : 'Add connections' );
+	});
+
+	var showConnections = function(connections) {
+		var html = ['<ul>'];
+
+		$('.connections-window ul').remove();
+		$('.connections-window .empty-msg').remove();
+
+		if (connections.length) {
+
+			myConnections.forEach(function(id) {
+				html.push('<li data-id="'+ id +'" class="connected"><div class="connections-img" style="background-image: url('+ connections[id].photo +')"></div>'+ connections[id].firstName +' ' + connections[id].lastName +  '</li>');
+			});
+
+			var ids = Object.keys(connections);
+			ids.forEach(function(id) {
+				if (myConnections.indexOf(id) == -1) {
+					html.push('<li data-id="'+ id +'"><div class="connections-img" style="background-image: url('+ connections[id].photo +')"></div>'+ connections[id].firstName +' ' + connections[id].lastName +  '</li>');
+				}
+			});
+
+			html.push('</ul>');
+			$('.connections-window').prepend(html.join('')).show();
+		} else {
+			$('.connections-window').prepend('<div class="empty-msg">No profile connections found.</div>').show();
+		}
+	}
+
+</script>

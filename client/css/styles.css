@@ -43,7 +43,25 @@ body.main {
 	text-align: center;
 	height: 605px;
 	position: relative;
-
+}
+#figure-legend {
+	position: absolute;
+	top: 150px;
+	right: 100px;
+}
+#figure-legend li {
+	cursor: pointer;
+	font-weight: bold;
+	color: white;
+	text-align: left;
+}
+#figure-legend li div {
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	margin: 10px;
+	display: inline-block;
+	overflow: hidden;
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
@@ -148,19 +166,19 @@ body.main {
 /**
  * Profile and Sign in form
  */
-#profile-form, #signin-form, #shopping-profile{
+#account-form, #signin-form, .profile-page {
 	max-width: 480px;
 	margin: 0 auto;
 	color: #666
 }
-#profile-form {
+#account-form {
 	max-width: 850px;
 }
-#profile-form h2, #signin-form h2, #shopping-profile h2{
+#account-form h2, #signin-form h2, .profile-page h2{
 	text-align: center;
-	margin: 25px 0 25px 5px;
+	margin: 25px 0 25px 40px;
 }
-#profile-form button, #signin-form button {
+#account-form button[type="submit"], #signin-form button[type="submit"] {
 	margin: 20px 0 0;
 	width: 200px;
 }
@@ -328,4 +346,88 @@ body.main {
 	padding: 10px;
 	max-width: 200px;
 	white-space: normal;
+}
+
+/*** Photo upload **/
+
+.photo-upload-frame {
+	border: 1px solid #ccc;
+	width: 150px;
+	height: 150px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50%;
+	text-align: center;
+	padding-top: 46px;
+	font-size: 12px;
+	font-style: italic;
+	cursor: pointer;
+}
+.photo-upload-file-input {
+	display: none !important;
+}
+
+/******* Connections ********/
+.connections-wrap {
+	margin: 38px 0 0;
+	font-size: 16px;
+	position: relative;
+}
+.connections-window {
+	display: none;
+	position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    top: -12px;
+    min-width: 440px;
+    z-index: 12344;
+}
+.connections-window ul {
+	list-style: none;
+    margin: 31px 0px;
+    padding: 0;
+    max-height: 500px;
+    display: block;
+    overflow-y: scroll;
+}
+.connections-window li {
+	cursor: pointer;
+	padding: 0 0 0 50px;
+}
+.connections-window li.connected {
+	background-image: url(/img/check_icon.png);
+	background-repeat: no-repeat;
+	background-position: 0 43%;
+}
+.connections-img {
+	width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 0 11px 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.connections-close {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+.connections-window .empty-msg {
+	text-align: center;
+	font-size: 12px;
+	font-style: italic;
+}
+
+/***** Ptofile page ********/
+.profile-basic-info {
+	padding: 36px;
+}
+.profile-basic-info .connections-wrap {
+	margin: 38px 0 0;
 }

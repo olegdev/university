@@ -1,0 +1,87 @@
+<div id="professional-profile" class="container profile-page">
+<div class="row">
+
+<h2>Edit your professional profile</h2>
+
+<form id="profile-form" class="form-horizontal" action="profile?type={{profile.type}}" method="post">
+
+	<h4>Basic info</h4>
+
+	<div class="profile-basic-info">
+		{{> photo_upload }}
+		{{> connections }}
+	</div>
+
+	<h4>Company info</h4>
+	<div class="companies-wrap">
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-6">
+			<button type="submit" class="btn btn-success">Save changes</button>
+		</div>
+  </div>
+
+</form>
+
+<script type="text/javascript">
+	var companies = {{{ json profile.companies }}};
+
+	var showCompanies = function() {
+		var html = [],
+			companyHtml = function(company, index) {
+				return  '<div class="form-group">' +
+						'<div class="col-xs-5">' +
+							'<input class="form-control" type="text" placeholder="Company name" name="company_name" value="'+ (company.name || "") +'"/>' +
+						'</div>' +
+						'<div class="col-xs-5" style="padding: 0;">' +
+						'<input class="form-control" type="text" placeholder="Position" name="company_position" value="'+ (company.position || "") +'"/>' +
+						'</div>' +
+						'</div>';
+			}
+
+		companies.forEach(function(company, index) {
+			html.push(companyHtml(company, index));
+		});
+
+		for(var i = companies.length; i < 3; i++) {
+			html.push(companyHtml({}, i));
+		}
+
+		$('.companies-wrap').html(html.join(''));
+	}
+
+	$('button[type="submit"]').click(function(e) {
+		e.preventDefault();
+		var formData = new FormData($('form')[0]);
+		var sendData = {companies: []};
+		var positions = formData.getAll('company_position');
+		formData.getAll('company_name').forEach(function(name, index) {
+			sendData.companies.push({
+				name: name,
+				position: positions[index] || '',
+			})
+		});
+
+		formData.delete('company_name');
+		formData.delete('company_position');
+
+		formData.forEach(function(v,k) {
+			if (v) {
+				sendData[k] = v;
+			}
+		}); 
+
+		$.ajax({
+			url: 'profile?type={{profile.type}}',
+			data: sendData,
+			type: 'POST',
+			success: function() {
+				window.location = '/';
+			},
+		})
+	});
+
+	showCompanies();
+
+</script>

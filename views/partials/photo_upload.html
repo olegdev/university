@@ -1,0 +1,36 @@
+
+	<div class="photo-upload-frame" style="background-image: url({{ profile.photo }});">
+		{{#if profile.photo}}
+		{{else}}
+			Choose your profile<br/>photo
+		{{/if}}
+
+	</div>
+	<input class="photo-upload-input" type="text" name="photo" value="{{ profile.photo }}" hidden />
+	<input class="photo-upload-file-input" type="file" value="..." hidden />
+
+<script type="text/javascript">
+
+	$('.photo-upload-frame').click(function() {
+		$('input[type="file"]').trigger('click');
+	});
+
+	$('input[type="file"').change(function() {
+		var data = new FormData();
+		data.append('file', $(this)[0].files[0]);
+		console.log($(this)[0].files[0]);
+		$.ajax({
+			url: '/upload',
+			data: data,
+			type: 'POST',
+			cache: false,
+		    contentType: false,
+		    processData: false,
+		    success: function(imgUrl) {
+		    	$('.photo-upload-frame').css({'background-image': 'url('+ imgUrl +')'}).html('');
+		    	$('.photo-upload-input').val(imgUrl);
+		    }
+		})
+	});
+
+</script>

@@ -12,11 +12,20 @@ var schema = new mongoose.Schema({
 	city: String,
 	email: String,
 	pass: String,
+	avatar: Number,
+
 	sport: String,
 	style: String,
 	pet: String,
-	avatar: Number,
-	shoppingProfile: Object
+	shoppingProfile: Object,
+
+	exists_profiles: Array, // List of types connected profiles
+
+	profiles: Object, // List of profiles. Key is a profile type
+
+	connections: Object, // List of connections. Key is a profile type (eg. {sport: [...], pet: [...]})
+
+
 });
 var model = mongoose.model('users', schema);
 
