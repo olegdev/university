@@ -26,6 +26,13 @@ module.exports = {
 			}
 		});
 
+		// ----------------- Logout -----------------------
+
+		app.get("/logout", function(req, res, next) {
+			req.session.destroy()
+			res.redirect('/');
+		});
+
 		// ----------------- landing page -----------------------
 
 		app.get("/landing", function(req, res, next) {
