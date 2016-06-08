@@ -59,7 +59,7 @@
 		$('.connections-window ul').remove();
 		$('.connections-window .empty-msg').remove();
 
-		if (connections.length) {
+		if (connections && Object.keys(connections).length) {
 
 			myConnections.forEach(function(id) {
 				html.push('<li data-id="'+ id +'" class="connected"><div class="connections-img" style="background-image: url('+ connections[id].photo +')"></div>'+ connections[id].firstName +' ' + connections[id].lastName +  '</li>');
