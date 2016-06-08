@@ -68,7 +68,14 @@
 
 		formData.forEach(function(v,k) {
 			if (v) {
-				sendData[k] = v;
+				if (sendData[k]) {
+					if (!$.isArray(sendData[k])) {
+						sendData[k] = [sendData[k]];
+					}
+					sendData[k].push(v);
+				} else {
+					sendData[k] = v;
+				}
 			}
 		}); 
 
