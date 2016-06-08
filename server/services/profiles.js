@@ -1,7 +1,9 @@
+var _ = require('underscore');
+
 module.exports = {
 
-	factory: function(type) {
-		var data = {type: type, connections: [], photo: ''};
+	factory: function(type, data) {
+		var data = _.extend({type: type, connections: [], photo: ''}, data || {});
 		return this.normalize(type, data);
 	},
 

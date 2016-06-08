@@ -19,7 +19,7 @@ var schema = new mongoose.Schema({
 	pet: String,
 	shoppingProfile: Object,
 
-	exists_profiles: Array, // List of types connected profiles
+	additional_profiles: Array, // List of types connected profiles
 
 	profiles: Object, // List of profiles. Key is a profile type
 

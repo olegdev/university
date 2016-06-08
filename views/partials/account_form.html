@@ -89,7 +89,9 @@
 		 	 <input type="text" class="form-control" disabled name="" value="Shopping">
 		</div>
 		<div class="col-xs-6">
+			{{#ifCond page "!=" "sign_up"}}
 			<button type="edit" data-profile_type="shopping" class="btn btn-success">Edit</button>
+			{{/ifCond}}
 			<button type="remove" class="btn btn-danger disabled">Remove</button>
 		</div>
 	</div>
@@ -99,7 +101,9 @@
 		 	 <input type="text" class="form-control" disabled name="" value="Professional">
 		</div>
 		<div class="col-xs-6">
+			{{#ifCond page "!=" "sign_up"}}
 			<button type="edit"  data-profile_type="professional" class="btn btn-success">Edit</button>
+			{{/ifCond}}
 			<button type="remove" class="btn btn-danger disabled">Remove</button>
 		</div>
 	</div>
@@ -170,7 +174,7 @@
 		var html = [
 			'<div class="form-group">',
 				'<div class="col-xs-6" style="padding: 0;">',
-				  '<select name="exists_profiles" class="form-control">',
+				  '<select name="additional_profiles" class="form-control">',
 		];
 
 		types.forEach(function(type) {
@@ -181,7 +185,9 @@
 				'</select>',
 				'</div>',
 				'<div class="col-xs-6">',
+					{{#ifCond page "!=" "sign_up"}}
 					'<button type="edit" data-profile_type="'+ profileType +'" class="btn btn-success">Edit</button>',
+					{{/ifCond}}
 					' <button type="remove" data-profile_type="'+ profileType +'"class="btn btn-danger">Remove</button>',
 				'</div>',
 			'</div>',
@@ -207,13 +213,13 @@
 		printProfileControls();
 	});
 
-	$(document.body).delegate('select[name="exists_profiles"]', 'change', function() {
+	$(document.body).delegate('select[name="additional_profiles"]', 'change', function() {
 		$(this).parent().parent().find('button').attr('data-profile_type', $(this).val());
 	});
 
 	var existsProfiles = [];
-	{{#if user.exists_profiles }}
-		existsProfiles = {{{ json user.exists_profiles }}};
+	{{#if user.additional_profiles }}
+		existsProfiles = {{{ json user.additional_profiles }}};
 	{{/if}}
 	existsProfiles.forEach(function(profileType) {
 		printProfileControls(profileType)

@@ -47,6 +47,16 @@ module.exports = {
 		app.post("/sign_up", function(req, res, next) {
 			var ModelClass = mongoose.model('users');
 			var model = new ModelClass(req.body);
+
+			model.profiles = {};
+			var profileList = ['shopping', 'professional'];
+			if (model.additional_profiles) {
+				profileList = profileList.concat(model.additional_profiles);
+			}
+			profileList.forEach(function(v) {
+				model.profiles[v] = profilesService.factory(v, {photo: "img/ava_" + model.avatar + ".png"})
+			});
+
 			model.save(function(err) {
 				if (!err) {
 					req.session.uid = model.id;
