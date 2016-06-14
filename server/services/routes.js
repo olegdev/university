@@ -43,28 +43,21 @@ module.exports = {
 		// ------------------- Sign up ---------------------------
 
 		app.get("/sign_up", function(req, res, next) {
-			res.render('sign_up', {page: 'sign_up'});
+			res.render('sign_up', {page: 'sign_up', profileList: profilesService.list });
 		});
 		app.post("/sign_up", function(req, res, next) {
 			var ModelClass = mongoose.model('users');
 			var model = new ModelClass(req.body);
 
-			model.profiles = {};
-			var profileList = ['shopping', 'professional'];
-			if (model.additional_profiles) {
-				profileList = profileList.concat(model.additional_profiles);
-			}
-			profileList.forEach(function(v) {
-				model.profiles[v] = profilesService.factory(v, {photo: "img/ava_" + model.avatar + ".png"})
-			});
-
-			model.save(function(err) {
-				if (!err) {
-					req.session.uid = model.id;
-					res.redirect('/');
-				} else {
-					/****/ logger.error('Cannot save user cause DB error ' + err);
-				}
+			usersService.normalize(model, {}, function() {
+				model.save(function(err) {
+					if (!err) {
+						req.session.uid = model.id;
+						res.redirect('/');
+					} else {
+						/****/ logger.error('Cannot save user cause DB error ' + err);
+					}
+				});
 			});
 		});
 
@@ -97,7 +90,7 @@ module.exports = {
 				mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 					if (!err) {
 						if (user) {
-							res.render('account', {page: 'account', user: user});
+							res.render('account', {page: 'account', user: user, profileList: profilesService.list});
 						} else {
 							/****/ logger.error('User not found by session uid ');
 						}			

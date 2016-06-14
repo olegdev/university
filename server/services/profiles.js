@@ -2,14 +2,61 @@ var _ = require('underscore');
 
 module.exports = {
 
+	list: [
+		{
+			type: 'shopping',
+			title: 'Shopping',
+			color: 'blue',
+			required: true,
+		},
+		{
+			type: 'professional',
+			title: 'Professional',
+			color: 'green',
+			required: true,
+		},
+		{
+			type: 'pet',
+			title: 'Pet',
+			color: 'red',
+		},
+		{
+			type: 'books',
+			title: 'Books',
+			color: 'yellow',
+		},
+		{
+			type: 'hobby',
+			title: 'Hobby',
+			color: 'grey',
+		},
+		{
+			type: 'design',
+			title: 'Design',
+			color: 'brown',
+		},
+		{
+			type: 'sport',
+			title: 'Sport',
+			color: 'black',
+		},
+	],
+
 	factory: function(type, data) {
 		var data = _.extend({type: type, connections: [], photo: ''}, data || {});
 		return this.normalize(type, data);
 	},
 
 	normalize: function(type, data) {
+		var defaults = {};
 
-		data.type = type;
+		this.list.forEach(function(item) {
+			if (item.type == type) {
+				defaults = item;
+			}
+		});
+
+		data = _.extend(defaults, data);
 
 		if (data.connections) {
 			if (typeof data.connections == 'string') {
@@ -19,12 +66,7 @@ module.exports = {
 			data.connections = [];
 		}
 
-		if (type == 'shopping') {
-			data.color = 'blue';
-			data.title = 'Shopping';
-		} else if (type == 'professional') {
-			data.color = 'green';
-			data.title = 'Professional';
+		if (type == 'professional') {
 			if (data.companies) {
 				if (typeof data.companies == 'string') {
 					data.companies = [data.companies];
@@ -32,24 +74,6 @@ module.exports = {
 			} else {
 				data.companies = [];
 			}
-		} else if (type == 'pet') {
-			data.color = 'red';
-			data.title = 'Pet';
-		} else if (type == 'books') {
-			data.color = 'yellow';
-			data.title = 'Books';
-		} else if (type == 'hobby') {
-			data.color = 'grey';
-			data.title = 'Hobby';
-		} else if (type == 'design') {
-			data.color = 'brown';
-			data.title = 'Design';
-		} else if (type == 'sport') {
-			data.color = 'black';
-			data.title = 'Sport';
-		} else {
-			data.color = 'white';
-			data.title = '..';
 		}
 
 		return data;

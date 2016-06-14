@@ -176,10 +176,10 @@
 	// -------------- Universes controls ----------------
 
 	var printProfileControls = function(profileType) {
-		var types = ['pet', 'sport', 'hobby', 'design', 'books'],
+		var profiles = {{{json profileList }}},
 			html = [];
 
-		profileType = profileType || types[0];
+		profileType = profileType || profiles[0].type;
 
 		var html = [
 			'<div class="form-group">',
@@ -187,8 +187,10 @@
 				  '<select name="additional_profiles" class="form-control">',
 		];
 
-		types.forEach(function(type) {
-			html.push('<option value="'+ type +'" '+ (type == profileType ? 'selected' : '') +'>'+ type.charAt(0).toUpperCase() + type.substr(1) +'</option>');
+		profiles.forEach(function(profile) {
+			if (!profile.required) {
+				html.push('<option value="'+ profile.type +'" '+ (profile.type == profileType ? 'selected' : '') +'>'+ profile.title +'</option>');
+			}
 		});
 
 		html = html.concat([
