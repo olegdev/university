@@ -257,6 +257,57 @@ module.exports = {
 			}
 		});
 
+		app.get("/profile_connections", function(req, res, next) {
+			if (!req.session.uid) {
+				res.redirect('/');
+			} else {
+				var type = req.query.type;
+
+				mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
+					if (!err) {
+						if (user) {
+
+							var resp = {
+								user: {
+									firstName: user.firstName,
+									lastName: user.lastName,
+									publicUrl: user.publicUrl,
+									avatar: user.avatar,
+									profiles: user.profiles,
+								},
+								connections: [],
+							};
+
+							if (user.profiles && user.profiles[type] && user.profiles[type].connections.length) {
+								var ids = _.map(user.profiles[type].connections, function(connectionId) {
+									return mongoose.Types.ObjectId(connectionId);
+								});
+
+								mongoose.model('users').find({'_id': { $in: ids}}, function(err, docs){
+									resp.connections = _.map(docs, function(doc) {
+										return {
+											firstName: doc.firstName,
+											lastName: doc.lastName,
+											publicUrl: doc.publicUrl,
+											avatar: doc.avatar,
+											profiles: doc.profiles,
+										}
+									});
+									res.send(resp);
+								});
+							} else {
+								res.send(resp);
+							}
+						} else {
+							/****/ logger.error('User not found by session uid ');
+						}			
+					} else {
+						/****/ logger.error('Cannot find user cause DB error ' + err);
+					}
+				});
+			}
+		});
+
 		// --------------------- Public page -----------------------------
 
 		app.get("/public", function(req, res, next) {

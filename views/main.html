@@ -4,7 +4,7 @@
 		{{#if user.profiles}}
 			<ul>
 			{{#each user.profiles }}
-				<li><div style="background-color: {{this.color}}"></div>{{this.title}}</li>
+				<li data-type="{{this.type}}"><div style="background-color: {{this.color}}"></div>{{this.title}}</li>
 			{{/each}}
 			</ul>
 		{{/if}}
@@ -30,3 +30,4 @@
 	};
 </script>
 <script src="js/main.js"></script>
+<script src="js/graphs.js"></script>
