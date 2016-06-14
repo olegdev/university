@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="olegdev">
+
+  <link href="/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+
+  <script type="text/javascript" src="/js/vendor/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <title>Universes :: {{ user.firstName }} {{ user.lastName }}</title>
+
+  </head>
+
+  <body class="{{#ifContains page "public"}}public{{/ifContains}}">
+
+    <div class="container">
+      {{{body}}}
+    </div>
+
+  </body>
+</html>

@@ -64,6 +64,16 @@
 	</div>
   </div>
 
+  {{#if user.publicUrl }}
+  <div class="form-group" style="height: 90px;">
+	<label for="publicUrlInput" class="col-sm-3 control-label">Public url</label>
+	<div class="col-sm-9" style="position: relative;">
+	  <a class="public-url-href" href="/public?name={{user.publicUrl}}" target="_blank">Show your public profile page</a>
+	</div>
+  </div>
+
+  {{/if}}
+
 {{#ifCond page "==" "sign_up"}}
   <div class="form-group">
 	<label for="accountInputEmail" class="col-sm-3 control-label">Email</label>

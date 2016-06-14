@@ -114,7 +114,7 @@ function render() {
 
 // ------------------ DOM listeners ----------------------- //
 
-$('#figure-container').dblclick(function() {
+$('.main #figure-container').dblclick(function() {
 	$('#figure-container').fadeOut(function() {
 	  $('#mynetwork').fadeIn(function() {
 	  	initGraph();

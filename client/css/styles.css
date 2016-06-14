@@ -1,4 +1,4 @@
-body.main {
+body.main, body.public {
 	background-color: #061535;
 }
 .container {
@@ -13,6 +13,12 @@ body.main {
 	height: 620px;
 	position: absolute;
 	left:0;
+}
+
+/**** Public page ***/
+
+.public h1 {
+	color: #fff;
 }
 
 /** 
@@ -254,6 +260,11 @@ body.main {
 	width: 0;
 	height: 0;
 	position: absolute;
+}
+.public-url-href {
+	font-size: 16px;
+    line-height: 33px;
+    cursor: pointer;
 }
 
 /**

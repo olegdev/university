@@ -1,0 +1,31 @@
+<h1>{{user.firstName}} {{user.lastName}}'s profile</h1>
+<div id="figure-bg"></div>
+<div id="figure-container">
+	<div id="figure-legend">
+		{{#if user.profiles}}
+			<ul>
+			{{#each user.profiles }}
+				<li><div style="background-color: {{this.color}}"></div>{{this.title}}</li>
+			{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+</div>
+<div class="row">
+<div id="chat-container" class="col-xs-6"><div></div></div>
+<div id="email-container" class="col-xs-6"><div></div></div>
+</div>
+
+<!-- Cube -->
+
+<script src="js/vendor/threejs/build/three.js"></script>
+<script src="js/vendor/threex.dynamictexture/threex.dynamictexture.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script type="text/javascript">
+	window.user = {
+		firstName: "{{{user.firstName}}}",
+		lastName: "{{{user.lastName}}}",
+		avatar: "{{{user.avatar}}}",
+	};
+</script>
+<script src="js/main.js"></script>

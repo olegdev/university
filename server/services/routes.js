@@ -1,4 +1,5 @@
 var logger = require(SERVICES_PATH + '/logger/logger')(__filename);
+var usersService = require(SERVICES_PATH + '/users');
 var profilesService = require(SERVICES_PATH + '/profiles');
 var mongoose = require('mongoose');
 var _ = require('underscore');
@@ -113,13 +114,14 @@ module.exports = {
 				mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 					if (!err) {
 						if (user) {
-							user.set(req.body);
-							user.save(function(err) {
-								if (!err) {
-									res.redirect('/');
-								} else {
-									/****/ logger.error('Cannot save profile cause DB error ' + err);
-								}
+							usersService.normalize(user, req.body, function() {
+								user.save(function(err) {
+									if (!err) {
+										res.redirect('/');
+									} else {
+										/****/ logger.error('Cannot save profile cause DB error ' + err);
+									}
+								});
 							});
 						} else {
 							/****/ logger.error('User not found by session uid ');
@@ -260,6 +262,23 @@ module.exports = {
 					}
 				});
 			}
+		});
+
+		// --------------------- Public page -----------------------------
+
+		app.get("/public", function(req, res, next) {
+			var publicUrl = req.query.name;
+			mongoose.model('users').findOne({publicUrl: publicUrl}, function(err, user) {
+				if (!err) {
+					if (user) {	
+						res.render('public', {layout: "public", page: 'public', user: user});
+					} else {
+						res.status(404).send('Public profile not found');
+					}
+				} else {
+					res.status(500).send(err);
+				}
+			});
 		});
 
 	}
