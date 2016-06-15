@@ -30,8 +30,8 @@ var loader = new THREE.TextureLoader();
 var cube;
 var dynamicTexture;
 
-loader.load('img/sample.jpg', function ( sampleTexture ) {
-loader.load('img/shopping_text.jpg', function ( shoppingTexture ) {
+loader.load('/img/sample.jpg', function ( sampleTexture ) {
+loader.load('/img/shopping_text.jpg', function ( shoppingTexture ) {
 	var boxMaterials = [];
 
 	for(var i = 0; i < 36; i++) {
