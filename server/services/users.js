@@ -20,8 +20,8 @@ module.exports = {
 
 		// public url
 
-		if (!user.publicUrl) {
-			this.genPublicUrl(user, function() {
+		if (!user.publicName) {
+			this.genPublicName(user, function() {
 				callback(user);
 			});
 		} else {
@@ -29,17 +29,17 @@ module.exports = {
 		}
 	},
 
-	genPublicUrl: function(user, callback) {
+	genPublicName: function(user, callback) {
 		var genInner = function(counter) {
-			var publicUrl = user.firstName + ' ' + user.lastName + (counter ? counter : '');
-			publicUrl = publicUrl.replace(/\s/g, '_');
+			var publicName = user.firstName + ' ' + user.lastName + (counter ? counter : '');
+			publicName = publicName.replace(/\s+/g, '.').toLowerCase();
 
-			mongoose.model('users').findOne({publicUrl: publicUrl}, function(err, doc) {
+			mongoose.model('users').findOne({publicName: publicName}, function(err, doc) {
 				if (!err) {
 					if (doc) {
 						genInner(counter + 1);
 					} else {
-						user.set({publicUrl: publicUrl});
+						user.set({publicName: publicName});
 						callback();
 					}
 				}

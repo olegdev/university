@@ -8,7 +8,7 @@ var Graphs = {
 				id: index + 1,
 				title: user.firstName + ' ' + user.lastName,
 				photo: user.profiles[type] && user.profiles[type].photo ? user.profiles[type].photo : '/img/avatar-'+ user.avatar +'.jpg',
-				publicUrl: user.publicUrl,
+				publicName: user.publicName,
 				descr: (function(companies) {
 					var html = '<ul>';
 					companies.forEach(function(company) {
@@ -86,8 +86,8 @@ var Graphs = {
 	        			nodeData = item;
 	        		}
 	        	});
-	        	if (nodeData && nodeData.publicUrl) {
-	        		window.open('/public?name=' + nodeData.publicUrl, "_blank");
+	        	if (nodeData && nodeData.publicName) {
+	        		window.open('/public/' + nodeData.publicName, "_blank");
 	        	}
 	        }
 	    });

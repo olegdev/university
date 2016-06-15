@@ -271,7 +271,7 @@ module.exports = {
 								user: {
 									firstName: user.firstName,
 									lastName: user.lastName,
-									publicUrl: user.publicUrl,
+									publicName: user.publicName,
 									avatar: user.avatar,
 									profiles: user.profiles,
 								},
@@ -288,7 +288,7 @@ module.exports = {
 										return {
 											firstName: doc.firstName,
 											lastName: doc.lastName,
-											publicUrl: doc.publicUrl,
+											publicName: doc.publicName,
 											avatar: doc.avatar,
 											profiles: doc.profiles,
 										}
@@ -310,9 +310,9 @@ module.exports = {
 
 		// --------------------- Public page -----------------------------
 
-		app.get("/public", function(req, res, next) {
-			var publicUrl = req.query.name;
-			mongoose.model('users').findOne({publicUrl: publicUrl}, function(err, user) {
+		app.get("/public/:publicName", function(req, res, next) {
+			var publicName = req.params.publicName;
+			mongoose.model('users').findOne({publicName: publicName}, function(err, user) {
 				if (!err) {
 					if (user) {	
 						res.render('public', {layout: "public", page: 'public', user: user});

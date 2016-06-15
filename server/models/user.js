@@ -25,7 +25,7 @@ var schema = new mongoose.Schema({
 
 	connections: Object, // List of connections. Key is a profile type (eg. {sport: [...], pet: [...]})
 
-	publicUrl: String,
+	publicName: String,
 
 });
 var model = mongoose.model('users', schema);

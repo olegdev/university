@@ -64,11 +64,11 @@
 	</div>
   </div>
 
-  {{#if user.publicUrl }}
+  {{#if user.publicName }}
   <div class="form-group" style="height: 90px;">
-	<label for="publicUrlInput" class="col-sm-3 control-label">Public url</label>
+	<label for="publicNameInput" class="col-sm-3 control-label">Public url</label>
 	<div class="col-sm-9" style="position: relative;">
-	  <a class="public-url-href" href="/public?name={{user.publicUrl}}" target="_blank">Show your public profile page</a>
+	  <a class="public-url-href" href="/public/{{user.publicName}}" target="_blank">Show your public profile page</a>
 	</div>
   </div>
 
