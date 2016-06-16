@@ -1,0 +1,27 @@
+<ul style="list-style: none;">
+{{#each users}}
+<li>
+	<span class="destroy-btn" data-id="{{this.id}}" title="Destroy user" style="margin-right: 10px; cursor: pointer;">x</span>
+	{{#if this.publicName}}
+	<a style="cursor: pointer;" href="/public/{{this.publicName}}" target="_blank">{{this.firstName}} {{this.lastName}}</a>
+	{{else}}
+	{{this.firstName}} {{this.lastName}}
+	{{/if}}
+</li>
+{{/each}}
+</ul>
+
+<script type="text/javascript">
+	$(function() {
+		$('.destroy-btn').click(function() {
+			var $el = $(this);
+			$.ajax({
+				url: '/profiles_destroy',
+				data: {id: $el.attr('data-id')},
+				success: function() {
+					$el.parent().remove();
+				}
+			});
+		});
+	});
+</script>

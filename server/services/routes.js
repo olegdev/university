@@ -325,5 +325,24 @@ module.exports = {
 			});
 		});
 
+		// --------------------- Profiles page -----------------------------
+
+		app.get("/profiles", function(req, res, next) {
+			mongoose.model('users').find({}, function(err, users) {
+				if (!err) {
+					res.render('profiles', {page: 'profiles', users: users || []});
+				} else {
+					res.status(500).send(err);
+				}
+			});
+		});
+
+		app.get("/profiles_destroy", function(req, res, next) {
+			console.log(req.query.id);
+			mongoose.model('users').findOne({_id: req.query.id}).remove(function() {
+				res.status(200).send({});
+			});
+		});
+
 	}
 }
