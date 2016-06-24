@@ -123,7 +123,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		var lastPosition = new THREE.Vector3();
 		var lastQuaternion = new THREE.Quaternion();
 
-		return function () {
+		return function (sph) {
 
 			var position = scope.object.position;
 
@@ -131,6 +131,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 			// rotate offset to "y-axis-is-up" space
 			offset.applyQuaternion( quat );
+
+			if (!sph) {
 
 			// angle from z-axis around y-axis
 			spherical.setFromVector3( offset );
@@ -157,6 +159,12 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 			// restrict radius to be between desired limits
 			spherical.radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, spherical.radius ) );
+
+			} else {
+				spherical.radius = sph.radius;
+				spherical.theta = sph.theta;
+				spherical.phi = sph.phi;
+			}
 
 			// move target to panned location
 			scope.target.add( panOffset );
@@ -208,6 +216,14 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	}();
 
+	this.rotateLeft = function(angle) {
+		rotateLeft(angle);
+	};
+
+	this.rotateUp =function(angle) {
+		rotateUp(angle);
+	};
+
 	this.dispose = function() {
 
 		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
@@ -248,6 +264,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 	// current position in spherical coordinates
 	var spherical = new THREE.Spherical();
 	var sphericalDelta = new THREE.Spherical();
+
+	this.spherical = spherical;
 
 	var scale = 1;
 	var panOffset = new THREE.Vector3();
@@ -908,6 +926,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 };
 
+
 THREE.OrbitControls.prototype = Object.create( THREE.EventDispatcher.prototype );
 THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;
 
@@ -1032,6 +1051,5 @@ Object.defineProperties( THREE.OrbitControls.prototype, {
 
 		}
 
-	}
-
+	},
 } );
