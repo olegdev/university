@@ -16,6 +16,76 @@ module.exports = {
 			required: true,
 		},
 		{
+			type: 'health',
+			title: 'Health',
+			color: '#ff8391',
+		},
+		{
+			type: 'food',
+			title: 'Food',
+			color: '#0938ab',
+		},
+		{
+			type: 'family',
+			title: 'Family',
+			color: '#f5f7f0',
+		},
+		{
+			type: 'friends',
+			title: 'Friends',
+			color: '#9386af',
+		},
+		{
+			type: 'education',
+			title: 'Education',
+			color: '#629255',
+		},
+		{
+			type: 'spirituality',
+			title: 'Spirituality',
+			color: '#262003',
+		},
+		{
+			type: 'travel',
+			title: 'Travel',
+			color: '#82f930',
+		},
+		{
+			type: 'music',
+			title: 'Music',
+			color: '#faf390',
+		},
+		{
+			type: 'video',
+			title: 'Video',
+			color: '#629255',
+		},
+		{
+			type: 'finance',
+			title: 'Finance',
+			color: '#f7c733',
+		},
+		{
+			type: 'dating',
+			title: 'Dating',
+			color: '#5209ff',
+		},
+		{
+			type: 'nature',
+			title: 'Nature',
+			color: '#cc77ae',
+		},
+		{
+			type: 'gaming',
+			title: 'Gaming',
+			color: '#90cef4',
+		},
+		{
+			type: 'charity',
+			title: 'Charity',
+			color: '#efedea',
+		},
+		{
 			type: 'pet',
 			title: 'Pet',
 			color: 'red',
@@ -27,7 +97,7 @@ module.exports = {
 		},
 		{
 			type: 'hobby',
-			title: 'Hobby',
+			title: 'Hobbies',
 			color: 'grey',
 		},
 		{
