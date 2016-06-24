@@ -57,7 +57,7 @@ function render() {
 	orbit.update();
 };
 
-$('.main #figure-legend li').click(function() {
+$('#figure-legend li').click(function() {
 	figure.rotateTo($(this).attr('data-type'), orbit);
 });
 
