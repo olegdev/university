@@ -52,22 +52,48 @@ body.main, body.public {
 }
 #figure-legend {
 	position: absolute;
-	top: 150px;
-	right: 100px;
+    top: 150px;
+    right: 0px;
+}
+#figure-legend ul {
+	list-style: none;
+    position: absolute;
+    width: 270px;
+    right: 0;
+    padding: 0;
 }
 #figure-legend li {
 	cursor: pointer;
-	font-weight: bold;
-	color: white;
-	text-align: left;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    float: left;
+    width: 135px;
+    margin-bottom: -4px;
 }
-#figure-legend li div {
-	width: 50px;
-	height: 50px;
+#figure-legend li .icon {
+	height: 30px;
 	vertical-align: middle;
 	margin: 10px;
 	display: inline-block;
-	overflow: hidden;
+	position: relative;
+    width: 73px;
+    border-width: 30px 18px 0;
+    border-style: solid;
+    transform: scale(0.6);
+    margin-right: -9px;
+    margin-top: 16px;
+    margin-left: -17px;
+}
+#figure-legend li .icon .icon-top {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -60px;
+    left: -18px;
+    border-width: 0 37px 30px;
+    border-style: solid;
 }
 #chat-container, #email-container {
 	border: 1px solid #ccc;
