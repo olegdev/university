@@ -19,6 +19,7 @@ module.exports = {
 							res.render('main', {page: 'main', user: user});
 						} else {
 							/****/ logger.error('User not found by session uid ');
+							res.redirect('/landing');
 						}			
 					} else {
 						/****/ logger.error('Cannot find user cause DB error ' + err);
