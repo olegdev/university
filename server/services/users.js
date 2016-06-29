@@ -15,7 +15,7 @@ module.exports = {
 			profileList = profileList.concat(user.additional_profiles);
 		}
 		profileList.forEach(function(v) {
-			user.profiles[v] = profilesService.factory(v, {photo: "img/ava_" + user.avatar + ".png"})
+			user.profiles[v] = profilesService.factory(v, {photo: "/img/ava_" + user.avatar + ".png"})
 		});
 
 		// public url

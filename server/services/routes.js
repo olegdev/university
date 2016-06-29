@@ -316,7 +316,11 @@ module.exports = {
 			mongoose.model('users').findOne({publicName: publicName}, function(err, user) {
 				if (!err) {
 					if (user) {	
-						res.render('public', {layout: "public", page: 'public', user: user});
+						res.render('public', {
+							layout: "public",
+							page: 'public',
+							user: user,
+						});
 					} else {
 						res.status(404).send('Public profile not found');
 					}
