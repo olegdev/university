@@ -259,54 +259,50 @@ module.exports = {
 		});
 
 		app.get("/profile_connections", function(req, res, next) {
-			if (!req.session.uid) {
-				res.redirect('/');
-			} else {
-				var type = req.query.type;
+			var type = req.query.type;
+			var uid = req.query.id;
 
-				mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
-					if (!err) {
-						if (user) {
+			mongoose.model('users').findOne({_id: uid}, function(err, user) {
+				if (!err) {
+					if (user) {
+						var resp = {
+							user: {
+								firstName: user.firstName,
+								lastName: user.lastName,
+								publicName: user.publicName,
+								avatar: user.avatar,
+								profiles: user.profiles,
+							},
+							connections: [],
+						};
 
-							var resp = {
-								user: {
-									firstName: user.firstName,
-									lastName: user.lastName,
-									publicName: user.publicName,
-									avatar: user.avatar,
-									profiles: user.profiles,
-								},
-								connections: [],
-							};
+						if (user.profiles && user.profiles[type] && user.profiles[type].connections.length) {
+							var ids = _.map(user.profiles[type].connections, function(connectionId) {
+								return mongoose.Types.ObjectId(connectionId);
+							});
 
-							if (user.profiles && user.profiles[type] && user.profiles[type].connections.length) {
-								var ids = _.map(user.profiles[type].connections, function(connectionId) {
-									return mongoose.Types.ObjectId(connectionId);
+							mongoose.model('users').find({'_id': { $in: ids}}, function(err, docs){
+								resp.connections = _.map(docs, function(doc) {
+									return {
+										firstName: doc.firstName,
+										lastName: doc.lastName,
+										publicName: doc.publicName,
+										avatar: doc.avatar,
+										profiles: doc.profiles,
+									}
 								});
-
-								mongoose.model('users').find({'_id': { $in: ids}}, function(err, docs){
-									resp.connections = _.map(docs, function(doc) {
-										return {
-											firstName: doc.firstName,
-											lastName: doc.lastName,
-											publicName: doc.publicName,
-											avatar: doc.avatar,
-											profiles: doc.profiles,
-										}
-									});
-									res.send(resp);
-								});
-							} else {
 								res.send(resp);
-							}
+							});
 						} else {
-							/****/ logger.error('User not found by session uid ');
-						}			
+							res.send(resp);
+						}
 					} else {
-						/****/ logger.error('Cannot find user cause DB error ' + err);
-					}
-				});
-			}
+						/****/ logger.error('User not found by uid ', uid);
+					}			
+				} else {
+					/****/ logger.error('Cannot find user cause DB error ' + err);
+				}
+			});
 		});
 
 		// --------------------- Public page -----------------------------
