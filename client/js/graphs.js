@@ -7,7 +7,7 @@ var Graphs = {
 			nodesData.push({
 				id: index + 1,
 				title: user.firstName + ' ' + user.lastName,
-				photo: user.profiles[type] && user.profiles[type].photo ? '/' + user.profiles[type].photo : '/img/avatar-'+ user.avatar +'.jpg',
+				photo: user.profiles[type] && user.profiles[type].photo ? user.profiles[type].photo : '/img/avatar-'+ user.avatar +'.jpg',
 				publicName: user.publicName,
 				descr: (function(companies) {
 					var html = '<ul>';
