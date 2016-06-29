@@ -1,4 +1,5 @@
-<h1>{{user.firstName}} {{user.lastName}}'s profile</h1>
+<div class="photo" style="background-image: url(/{{user.profiles.professional.photo}})"></div>
+<h1>{{user.firstName}} {{user.lastName}}</h1>
 <div id="figure-bg"></div>
 <div id="figure-container">
 	<div id="figure-legend">
@@ -16,11 +17,12 @@
 		{{/if}}
 	</div>
 </div>
-<!-- Cube -->
+<div id="mynetwork"></div>
 
 <script src="/js/vendor/threejs/build/three.js"></script>
 <script src="/js/vendor/threex.dynamictexture/threex.dynamictexture.js"></script>
 <script src="/js/OrbitControls.js"></script>
+<script src="/js/vendor/vis/dist/vis.min.js"></script>
 <script type="text/javascript">
 	window.user = {
 		firstName: "{{{user.firstName}}}",
@@ -31,3 +33,4 @@
 </script>
 <script src="/js/figure.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/graphs.js"></script>

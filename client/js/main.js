@@ -61,10 +61,10 @@ $('#figure-legend li').click(function() {
 	figure.rotateTo($(this).attr('data-type'), orbit);
 });
 
-$('.main #figure-legend li').dblclick(function() {
+$('#figure-legend li').dblclick(function() {
 	var type = $(this).attr('data-type');
 	$.ajax({
-		url: 'profile_connections?type=' + type,
+		url: '/profile_connections?type=' + type,
 		success: function(data) {
 			$('#mynetwork').html('');
 			$('#figure-container').fadeOut(function() {
