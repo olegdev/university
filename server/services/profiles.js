@@ -68,7 +68,7 @@ module.exports = {
 		{
 			type: 'video',
 			title: 'Video',
-			color: '#629255',
+			color: '#0a9255',
 			order: 10
 		},
 		{
