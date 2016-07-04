@@ -19,10 +19,6 @@
 </div>
 <div id="mynetwork"></div>
 
-<script src="/js/vendor/threejs/build/three.js"></script>
-<script src="/js/vendor/threex.dynamictexture/threex.dynamictexture.js"></script>
-<script src="/js/OrbitControls.js"></script>
-<script src="/js/vendor/vis/dist/vis.min.js"></script>
 <script type="text/javascript">
 	window.user = {
 		id: "{{user._id}}",
@@ -32,6 +28,5 @@
 		profiles: {{{json user.profiles }}},
 	};
 </script>
-<script src="/js/figure.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/graphs.js"></script>
+
+<script data-main="/js/figure" src="/js/require.js"></script>
