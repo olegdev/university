@@ -6,27 +6,27 @@ module.exports = {
 		{
 			type: 'shopping',
 			title: 'Shopping',
-			color: 'blue',
+			color: '#00FF00',
 			required: true,
 			order: 0
 		},
 		{
 			type: 'professional',
 			title: 'Professional',
-			color: 'green',
+			color: '#00FFFF',
 			required: true,
 			order: 1
 		},
 		{
 			type: 'health',
 			title: 'Health',
-			color: '#ff8391',
+			color: '#FFFFFF',
 			order: 2
 		},
 		{
 			type: 'food',
 			title: 'Food',
-			color: '#0938ab',
+			color: '#C0C0C0',
 			order: 3
 		},
 		{
@@ -38,55 +38,55 @@ module.exports = {
 		{
 			type: 'friends',
 			title: 'Friends',
-			color: '#9386af',
+			color: '#808080',
 			order: 5
 		},
 		{
 			type: 'education',
 			title: 'Education',
-			color: '#629255',
+			color: '#FF0000',
 			order: 6
 		},
 		{
 			type: 'spirituality',
 			title: 'Spirituality',
-			color: '#262003',
+			color: '#800000',
 			order: 7
 		},
 		{
 			type: 'travel',
 			title: 'Travel',
-			color: '#82f930',
+			color: '#FFFF00',
 			order: 8
 		},
 		{
 			type: 'music',
 			title: 'Music',
-			color: '#faf390',
+			color: '#808000',
 			order: 9
 		},
 		{
 			type: 'video',
 			title: 'Video',
-			color: '#0a9255',
+			color: '#008000',
 			order: 10
 		},
 		{
 			type: 'finance',
 			title: 'Finance',
-			color: '#f7c733',
+			color: '#008080',
 			order: 11
 		},
 		{
 			type: 'dating',
 			title: 'Dating',
-			color: '#5209ff',
+			color: '#0000FF',
 			order: 12
 		},
 		{
 			type: 'nature',
 			title: 'Nature',
-			color: '#cc77ae',
+			color: '#000080',
 			order: 13
 		},
 		{
@@ -98,7 +98,7 @@ module.exports = {
 		{
 			type: 'charity',
 			title: 'Charity',
-			color: '#efedea',
+			color: '#FF00FF',
 			order: 15
 		},
 		{
@@ -110,13 +110,13 @@ module.exports = {
 		{
 			type: 'books',
 			title: 'Books',
-			color: 'yellow',
+			color: '#800080',
 			order: 17
 		},
 		{
 			type: 'hobby',
 			title: 'Hobbies',
-			color: 'grey',
+			color: '#000000',
 			order: 18
 		},
 	],
