@@ -98,7 +98,21 @@ Figure.prototype.rotateTo = function(type, orbit) {
 		clearInterval(this.rotateInterval);
 	}
 
-	target = this.faces[index] ? this.faces[index].rotation : this.faces[0].rotation;
+	this.faces.forEach(function(face, i){
+		if (face.index) {
+			if (face.index == index + 1) {
+				target = face.rotation;
+			}
+		} else {
+			if (i == index) {
+				target = face.rotation;
+			}	
+		}
+	})
+
+	if (!target) {
+		target = this.faces[0].rotation;
+	}
 
 	d1 = ( orbit.spherical.radius - target.radius ) / 25;
 	d2 = ( orbit.spherical.phi - target.phi ) / 25;

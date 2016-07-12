@@ -8,7 +8,14 @@ define([
 	'figures/10ta',
 	'figures/11ta',
 	'figures/12ta',
-], function(Tetra, Peta, Sixta, f7ta, f8ta, f9ta, f10ta, f11ta, f12ta) {
+	'figures/13ta',
+	'figures/14ta',
+	'figures/15ta',
+	'figures/16ta',
+	'figures/17ta',
+	'figures/18ta',
+	'figures/19ta',
+], function(Tetra, Peta, Sixta, f7ta, f8ta, f9ta, f10ta, f11ta, f12ta, f13ta, f14ta, f15ta, f16ta, f17ta, f18ta, f19ta) {
 	var FigureFactory = {
 		factory: function(scene, config) {
 			var figure;
@@ -48,8 +55,29 @@ define([
 					figure = new f11ta(config);
 					break;
 				case 12:
-				default:
 					figure = new f12ta(config);
+					break;
+				case 13:
+					figure = new f13ta(config);
+					break;
+				case 14:
+					figure = new f14ta(config);
+					break;
+				case 15:
+					figure = new f15ta(config);
+					break;
+				case 16:
+					figure = new f16ta(config);
+					break;
+				case 17:
+					figure = new f17ta(config);
+					break;
+				case 18:
+					figure = new f18ta(config);
+					break;
+				case 19:
+				default:
+					figure = new f19ta(config);
 					break;
 			}
 

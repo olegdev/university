@@ -490,3 +490,45 @@ body.main, body.public {
 .profile-basic-info .connections-wrap {
 	margin: 38px 0 0;
 }
+
+/****** Konstructor ********/
+body.konstructor #figure-container {
+	margin-left: -400px;
+}
+#konstructor-controls {
+	position: absolute;
+    top: 150px;
+    right: 0px;
+}
+#konstructor-controls ul {
+	list-style: none;
+    position: absolute;
+    width: 530px;
+    right: 0;
+    padding: 0;
+}
+#konstructor-controls li {
+    text-align: left;
+    margin-bottom: 2px;
+}
+#konstructor-controls li input {
+	width: 34px;
+}
+#konstructor-controls li .separator {
+	width: 20px;
+	display: inline-block;
+}
+#konstructor-controls .face-color {
+	width: 24px; 
+	height: 24px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 0 2px 0 0;
+}
+#konstructor-controls input[name="face-index"]{
+	width: 24px;
+}
+
+
+
+

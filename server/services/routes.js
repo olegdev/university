@@ -345,5 +345,10 @@ module.exports = {
 			});
 		});
 
+		// --------------------- Konstructor --------------------------------
+
+		app.get("/konstructor", function(req, res, next) {
+			res.render('konstructor', {page: 'konstructor'});
+		});
 	}
 }
