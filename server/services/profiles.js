@@ -6,87 +6,87 @@ module.exports = {
 		{
 			type: 'shopping',
 			title: 'Shopping',
-			color: '#00FF00',
+			color: '#b5121b',
 			required: true,
 			order: 0
 		},
 		{
 			type: 'professional',
 			title: 'Professional',
-			color: '#00FFFF',
+			color: '#eeb84c',
 			required: true,
 			order: 1
 		},
 		{
 			type: 'health',
 			title: 'Health',
-			color: '#FFFFFF',
+			color: '#c75100',
 			order: 2
 		},
 		{
 			type: 'food',
 			title: 'Food',
-			color: '#C0C0C0',
+			color: '#ffe95b',
 			order: 3
 		},
 		{
 			type: 'family',
 			title: 'Family',
-			color: '#f5f7f0',
+			color: '#0011ff',
 			order: 4
 		},
 		{
 			type: 'friends',
 			title: 'Friends',
-			color: '#808080',
+			color: '#e3ff95',
 			order: 5
 		},
 		{
 			type: 'education',
 			title: 'Education',
-			color: '#FF0000',
+			color: '#79ce16',
 			order: 6
 		},
 		{
 			type: 'spirituality',
 			title: 'Spirituality',
-			color: '#800000',
+			color: '#88a3de',
 			order: 7
 		},
 		{
 			type: 'travel',
 			title: 'Travel',
-			color: '#FFFF00',
+			color: '#6cbbc4',
 			order: 8
 		},
 		{
 			type: 'music',
 			title: 'Music',
-			color: '#808000',
+			color: '#cdafc3',
 			order: 9
 		},
 		{
 			type: 'video',
 			title: 'Video',
-			color: '#008000',
+			color: '#f64e3f',
 			order: 10
 		},
 		{
 			type: 'finance',
 			title: 'Finance',
-			color: '#008080',
+			color: '#09b3a7',
 			order: 11
 		},
 		{
 			type: 'dating',
 			title: 'Dating',
-			color: '#0000FF',
+			color: '#ee6363',
 			order: 12
 		},
 		{
 			type: 'nature',
 			title: 'Nature',
-			color: '#000080',
+			color: '#99aa99',
 			order: 13
 		},
 		{
@@ -98,27 +98,33 @@ module.exports = {
 		{
 			type: 'charity',
 			title: 'Charity',
-			color: '#FF00FF',
+			color: '#c51d1d',
 			order: 15
 		},
 		{
 			type: 'pet',
 			title: 'Pet',
-			color: 'red',
+			color: '#ffa500',
 			order: 16
 		},
 		{
 			type: 'books',
 			title: 'Books',
-			color: '#800080',
+			color: '#8b3a3a',
 			order: 17
 		},
 		{
 			type: 'hobby',
 			title: 'Hobbies',
-			color: '#000000',
+			color: '#e0eee0',
 			order: 18
 		},
+		//{
+		//	type: 'sport',
+		//	title: 'Sport',
+		//	color: '#8b7355',
+		//	order: 19
+		//},
 	],
 
 	factory: function(type, data) {
