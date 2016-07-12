@@ -187,11 +187,15 @@
 				  '<select name="additional_profiles" class="form-control">',
 		];
 
-		profiles.forEach(function(profile) {
-			if (!profile.required) {
-				html.push('<option value="'+ profile.type +'" '+ (profile.type == profileType ? 'selected' : '') +'>'+ profile.title +'</option>');
-			}
-		});
+		profiles
+				.sort(function(a, b) {
+					return a.title.localeCompare(b.title);
+				})
+				.forEach(function(profile) {
+					if (!profile.required) {
+						html.push('<option value="'+ profile.type +'" '+ (profile.type == profileType ? 'selected' : '') +'>'+ profile.title +'</option>');
+					}
+				});
 
 		html = html.concat([
 				'</select>',
