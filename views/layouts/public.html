@@ -9,6 +9,7 @@
 
   <link href="/js/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/styles.css" rel="stylesheet">
+   <link href="/js/vendor/vis/dist/vis.css" rel="stylesheet">
 
   <script type="text/javascript" src="/js/vendor/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -18,6 +19,12 @@
   </head>
 
   <body class="{{#ifContains page "public"}}public{{/ifContains}}">
+
+    <div class="tbar">
+      <a href="http://i-v.life"><div class="iv-icon"></div></a>
+      <h3><a id="visit-link" href="http://i-v.life">Visit i-v.life to learn more</a></h3>
+    </div>
+
 
     <div class="container">
       {{{body}}}

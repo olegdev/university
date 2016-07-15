@@ -1,4 +1,4 @@
-body.main {
+body.main, body.public {
 	background-color: #061535;
 }
 .container {
@@ -38,9 +38,10 @@ body.main {
 }
 .public .tbar {
 	position: relative;
-	height: 40px;
+	height: 60px;
 	width: 100%;
-	margin: 10px 0 10px 0;
+	padding: 10px 30px;
+	background-color: #fff;
 }
 .public .iv-icon {
 	background-image: url(../img/iv_logo.jpg);
@@ -53,9 +54,9 @@ body.main {
 }
 .public #visit-link {
 	position: absolute;
-    right: -7px;
+    right: 10px;
     cursor: pointer;
-    top: 12px;
+    top: 16px;
     text-decoration: underline;
 }
 
