@@ -1,4 +1,4 @@
-body.main, body.public {
+body.main {
 	background-color: #061535;
 }
 .container {
@@ -13,10 +13,17 @@ body.main, body.public {
 	height: 620px;
 	position: absolute;
 	left:0;
+	border-radius: 4px;
 }
 
 /**** Public page ***/
 
+.public .person-info {
+	position: absolute;
+    z-index: 1;
+    top: 50px;
+    width: 100%;
+}
 .public h1 {
 	color: #fff;
 }
@@ -28,6 +35,16 @@ body.main, body.public {
 	background-size: contain;
 	background-position: 50%;
 	float: left;
+}
+.public .iv-icon {
+	background-image: url(../img/iv_logo.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 40px;
+	height: 40px;
+	display: block;
+	cursor: pointer;
+	margin: 5px 0 5px 0;
 }
 
 /** 
