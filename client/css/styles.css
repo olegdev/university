@@ -35,6 +35,8 @@ body.main, body.public {
 	background-size: contain;
 	background-position: 50%;
 	float: left;
+	border-radius: 179px;
+    border: 1px solid #ccc;
 }
 .public .tbar {
 	position: relative;
