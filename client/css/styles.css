@@ -21,7 +21,7 @@ body.main, body.public {
 .public .person-info {
 	position: absolute;
     z-index: 1;
-    top: 60px;
+    top: 15px;
     width: 100%;
 }
 .public h1 {
