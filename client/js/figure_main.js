@@ -124,4 +124,16 @@ require(['jquery', 'underscore', 'threejs', 'orbit', 'figure_factory', 'graphs']
 		$('.search-field input').focus();
 	});
 
+	// hack! ))
+	if (user && user.profiles && user.profiles.professional && user.profiles.professional.companies) {
+		var html = [];
+		user.profiles.professional.companies.forEach(function(c) {
+			if (c.name) {
+				html.push(c.name);
+			}
+		});
+		$('.public .person-info h3').html(html.join(', '));
+	}
+
+
 });

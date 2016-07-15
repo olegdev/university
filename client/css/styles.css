@@ -24,6 +24,15 @@ body.main, body.public {
     top: 15px;
     width: 100%;
 }
+.public .person-info h1 {
+	margin: 4px 0 0 0;
+}
+.public .person-info h3 {
+	margin: 4px 0 0 0;
+	color: #fff;
+	font-weight: normal;
+	font-size: 17px;
+}
 .public h1 {
 	color: #fff;
 }
