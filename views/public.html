@@ -9,20 +9,7 @@
 </div>
 <div id="figure-bg"></div>
 <div id="figure-container">
-	<div id="figure-legend">
-		{{#if user.profiles}}
-			<ul>
-			{{#each user.profiles }}
-				<li data-type="{{this.type}}">
-					<div class="icon" style="border-color: {{this.color}} transparent;">
-						<div class="icon-top" style="border-color: transparent transparent {{this.color}};"></div>
-					</div>
-					<a href="#">{{this.title}}</a>
-				</li>
-			{{/each}}
-			</ul>
-		{{/if}}
-	</div>
+	<div id="figure-legend"></div>
 </div>
 <div id="mynetwork"></div>
 

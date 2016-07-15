@@ -8,14 +8,14 @@ module.exports = {
 			title: 'Shopping',
 			color: '#b5121b',
 			required: true,
-			order: 0
+			order: 1
 		},
 		{
 			type: 'professional',
 			title: 'Professional',
 			color: '#eeb84c',
 			required: true,
-			order: 1
+			order: 0
 		},
 		{
 			type: 'health',
