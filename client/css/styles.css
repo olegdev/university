@@ -135,6 +135,11 @@ body.main {
     border-width: 0 37px 30px;
     border-style: solid;
 }
+#figure-legend li a {
+	text-decoration: underline;
+	color: #fff;
+	font-weight: normal;
+}
 #chat-container, #email-container {
 	border: 1px solid #ccc;
 	height: 200px;

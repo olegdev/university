@@ -119,12 +119,12 @@ module.exports = {
 			color: '#e0eee0',
 			order: 18
 		},
-		//{
-		//	type: 'sport',
-		//	title: 'Sport',
-		//	color: '#8b7355',
-		//	order: 19
-		//},
+		{
+			type: 'sport',
+			title: 'Sport',
+			color: '#8b7355',
+			order: 19
+		},
 	],
 
 	factory: function(type, data) {

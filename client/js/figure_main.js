@@ -78,8 +78,8 @@ require(['jquery', 'threejs', 'orbit', 'figure_factory', 'graphs'], function($,t
 		figure.rotateTo($(this).attr('data-type'), orbit);
 	});
 
-	$('#figure-legend li').dblclick(function() {
-		var type = $(this).attr('data-type');
+	$('#figure-legend li a').click(function() {
+		var type = $(this).parent().attr('data-type');
 		$.ajax({
 			url: '/profile_connections?type=' + type + '&id=' + (user ? user.id : ''),
 			success: function(data) {
