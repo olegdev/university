@@ -339,7 +339,6 @@ module.exports = {
 		});
 
 		app.get("/profiles_destroy", function(req, res, next) {
-			console.log(req.query.id);
 			mongoose.model('users').findOne({_id: req.query.id}).remove(function() {
 				res.status(200).send({});
 			});
@@ -350,5 +349,36 @@ module.exports = {
 		app.get("/konstructor", function(req, res, next) {
 			res.render('konstructor', {page: 'konstructor'});
 		});
+
+		// --------------------- Subscribes ----------------------------
+
+		app.get("/subscribes", function(req, res, next) {
+			mongoose.model('subscribes').find({}, function(err, subscribes) {
+				if (!err) {
+					res.render('subscribes', {page: 'subscribes', subscribes: subscribes || []});
+				} else {
+					res.status(500).send(err);
+				}
+			});
+		});
+
+		app.get("/subscribe-beta", function(req, res, next) {
+			mongoose.model('users').find({}, function(err, users) {
+				var ModelClass = mongoose.model('subscribes');
+				var model = new ModelClass({
+					email: req.query.email,
+					type: 'beta',
+				});
+
+				model.save(function(err) {
+					if (!err) {
+						res.status(200).send({});
+					} else {
+						/****/ logger.error('Cannot save email subscription cause DB error ' + err);
+					}
+				});
+			});
+		});
+
 	}
 }

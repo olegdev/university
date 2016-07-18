@@ -70,6 +70,20 @@ body.main, body.public {
     top: 16px;
     text-decoration: underline;
 }
+.public #email-subscribe {
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+	width: 100%;
+}
+.public #email-subscribe-input {
+	display: inline;
+	width: 200px;
+}
+.public #email-subscribe span {
+	color: #fff;
+	font-size: 16px;
+}
 
 /** 
  * Landing page

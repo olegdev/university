@@ -135,5 +135,21 @@ require(['jquery', 'underscore', 'threejs', 'orbit', 'figure_factory', 'graphs']
 		$('.public .person-info h3').html(html.join(', '));
 	}
 
+	$('#email-subscribe-btn').on('click', function() {
+		var email = $('#email-subscribe-input').val();
+		if (email) {
+			$.ajax({
+				url: '/subscribe-beta?email=' + email,
+				success: function() {
+					setTimeout(function() {
+						$('#email-subscribe span').text('Thanks for Subscribing!');
+						$('#email-subscribe-input').remove();
+						$('#email-subscribe-btn').remove();
+					}, 500);
+				}
+			});
+		}
+	});
+
 
 });
