@@ -79,10 +79,11 @@ body.main, body.public {
 .public #email-subscribe-input {
 	display: inline;
 	width: 200px;
+	margin-top: 10px;
 }
 .public #email-subscribe span {
 	color: #fff;
-	font-size: 16px;
+	font-size: 20px;
 }
 
 /** 
