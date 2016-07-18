@@ -4,6 +4,17 @@ var profilesService = require(SERVICES_PATH + '/profiles');
 var mongoose = require('mongoose');
 var _ = require('underscore');
 
+var refreshUserProfileInfo = function(user) {
+	if (user && user.profiles) {
+		profilesService.list.forEach(function(data) {
+			if (user.profiles[data.type]) {
+				_.extend(user.profiles[data.type], data);
+			}
+		});
+	}
+	return user;
+}
+
 module.exports = {
 	init: function(app) {
 
@@ -16,7 +27,7 @@ module.exports = {
 				mongoose.model('users').findOne({_id: req.session.uid}, function(err, user) {
 					if (!err) {
 						if (user) {
-							res.render('main', {page: 'main', user: user});
+							res.render('main', {page: 'main', user: refreshUserProfileInfo(user)});
 						} else {
 							/****/ logger.error('User not found by session uid ');
 							res.redirect('/landing');
@@ -315,7 +326,7 @@ module.exports = {
 						res.render('public', {
 							layout: "public",
 							page: 'public',
-							user: user,
+							user: refreshUserProfileInfo(user),
 						});
 					} else {
 						res.status(404).send('Public profile not found');
