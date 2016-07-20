@@ -119,6 +119,7 @@ body.main, body.public {
 	position: absolute;
     top: 100px;
     right: 0px;
+    z-index: 1;
 }
 #figure-legend ul {
 	list-style: none;
