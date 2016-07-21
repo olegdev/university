@@ -137,7 +137,7 @@ module.exports = {
 
 		this.list.forEach(function(item) {
 			if (item.type == type) {
-				defaults = item;
+				defaults = _.clone(item);
 			}
 		});
 

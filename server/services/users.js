@@ -9,13 +9,15 @@ module.exports = {
 
 		// profiles 
 
-		user.profiles = {};
+		user.profiles = user.profiles || {};
 		var profileList = ['shopping', 'professional'];
 		if (user.additional_profiles) {
 			profileList = profileList.concat(user.additional_profiles);
 		}
 		profileList.forEach(function(v) {
-			user.profiles[v] = profilesService.factory(v, {photo: "/img/ava_" + user.avatar + ".png"})
+			if (!user.profiles[v]) {
+				user.profiles[v] = profilesService.factory(v, {photo: "/img/ava_" + user.avatar + ".png"})
+			}
 		});
 
 		// public url
