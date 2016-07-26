@@ -1,7 +1,7 @@
 define([
-	'konstructor/model',
-	'konstructor/vertice',
-	'konstructor/face'
+	'konstructor/Model',
+	'konstructor/Vertice',
+	'konstructor/Face'
 ], function(Model, Vertice, Face) {
 
 	var Konstructor = {
